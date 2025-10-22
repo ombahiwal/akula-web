@@ -18,6 +18,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Kyiv Type Serif";
+  src: url("./assets/fonts/KyivTypeSerif-VarGX.ttf") format("truetype");
+  font-weight: 100 900; /* weight range if variable */
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -116,7 +124,8 @@ button:focus-visible {
   text-align: right;
 }
 .small-text-credit{
-  font-family: 'courier';
+  font-family: 'Kyiv Type Serif';
+  font-weight: 400;
   font-size: 1rem;
   line-height: 0.5rem;
 }
@@ -132,7 +141,7 @@ button:focus-visible {
 .nav-tile-highlighted{
   border: 5px solid #ffd700;
   color:#ffd700;
-  background-color: #000;
+  background-color: #0057b8;
 }
 .nav-tile-body {
   font-family: 'Courier New', Courier, monospace;
@@ -160,7 +169,7 @@ button:focus-visible {
   font-family: "Kyiv Type Sans";
   font-weight: 350;
   border: 2px solid white;
-  font-size: 1rem;
+  font-size: 5vw;
   padding: 1rem;
   text-align: left;
 }
@@ -168,8 +177,11 @@ button:focus-visible {
   font-weight: 800;
   font-size: 2rem;
 }
+.about-body{
+  font-size: 0.9rem;
+}
 .body-desc{
-  font-size: 2rem;
+  font-size: 5vw;
   color:black;
 }
 
@@ -178,4 +190,56 @@ button:focus-visible {
   font-family: "Kyiv Type Sans";
   font-weight: 300;
   letter-spacing: 1px
+}
+
+
+.event-timeline-entity{
+  font-family: 'Kyiv Type Serif';
+  
+  
+}
+
+.event-timeline-entity-title{
+  font-size: 3rem;
+  font-weight: 800;
+  color:#ffd700
+}
+
+.event-timeline-entity-date{
+  
+}
+
+.event-timeline-entity-desc{
+  
+}
+
+
+/* Medium screens (tablets, etc.) */
+@media (max-width: 992px) {
+ .small-text-credit{
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
+
+
+  .square{
+    font-size: 1.8rem;
+  }
+
+  .about-title{
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+  .about-body{
+    font-size: 0.8rem;
+  }
+  .small-text-credit{
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
 }

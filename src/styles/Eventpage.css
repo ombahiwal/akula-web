@@ -1,0 +1,114 @@
+.event-timeline-entity{
+  font-family: 'Kyiv Type Sans';
+  /* padding: 1rem;   */
+  
+}
+
+.event-timeline-entity-title{
+    text-align: left;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #ffd700;
+  line-height: 90%;
+  transition: color .25s ease, transform .25s ease; 
+}
+.timeline-items{
+    text-align: left;
+}
+
+.event-timeline-entity-date{
+  
+}
+
+.event-timeline-entity-desc{
+  
+}
+.event-timeline-year{
+    font-family: 'Kyiv Type Serif';
+    font-size: 2rem;
+    padding: 1rem;  
+    font-weight: 700;
+}
+.event-timeline-date{
+    font-family: 'Kyiv Type Serif';
+    font-size: 1rem;
+    font-weight: 700;
+}
+.event-fix-on-phone{
+    position: fixed;   
+}
+.current-event-image{
+      border:5px solid #ffd700;
+}
+.events-back-arrow{
+    color:#ffd700;
+    width: 100px;
+    max-width: 100px;
+    max-height: 120px;
+    font-size: 4rem;
+  font-weight: 800;
+  border:5px solid #ffd700;
+  /* color: #ffd700; */
+}
+
+.events-back-arrow:hover{
+    font-size: 4rem;
+  font-weight: 800;
+  border:5px solid #ffd700;
+  background-color: #0057b8;
+  transition: 0.3s;
+  /* color: #ffd700; */
+}
+/* Medium screens (tablets, etc.) */
+@media (max-width: 992px) {
+
+}
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
+
+        .event-fix-on-phone {
+            position: fixed;
+            top:0;
+            left:0;
+        }
+        .event-timeline-entity-title{
+            font-size: 3rem;
+            line-height: 90%;
+        }
+
+        .event-image{ 
+            max-width: "100%";
+            height: "auto";
+            opacity: 80%;
+        }
+
+
+}
+
+/* in Eventpage.css */
+.events-page { height: 100vh; overflow: hidden; } /* outer wrapper */
+
+.events-list-container {
+  height: 100vh;        /* full height */
+  overflow-y: auto;     /* inner scrolling area (use this if you want a scrollable column) */
+  padding-right: 1rem;
+}
+
+/* other styles */
+.event-current-year {
+    font-size: 3rem;
+    font-weight: 700;
+}
+.sticky-col {
+    position: fixed;
+    top: 25%;
+    left:0;
+    height: 100vh;
+    padding: 2rem;
+}
+
+.event-image{ 
+    max-width: "100%";
+    height: "auto";
+}

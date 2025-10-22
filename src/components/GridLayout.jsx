@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FlagToText from "./FlagToText";
-
+import {Link} from 'react-router-dom'
 const GridLayout = () => {
   return (
     <div className="d-flex overflow-hidden bg-black">
@@ -63,10 +63,12 @@ const GridLayout = () => {
             <Col xs={12} md={6}>
               <Row className="g-2">
                 <Col xs={6}>
+                <Link to="/events">
                 <div className="square nav-tile position-relative">
                     <span className="top-left">Latest Events</span>
                     <span className="bottom-right">➔</span>
                 </div>
+                </Link>
                 </Col>
                 <Col xs={6}>
                   <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>10</div>
@@ -108,16 +110,15 @@ const GridLayout = () => {
                 <div className=" bg-white text-white d-flex align-items-left justify-content-left" style={{ aspectRatio: "1/1" }}>
                     <div className="about-tile align-items-left">
                         <div className="about-title">
-                            About
+                            About 
                         </div>
-                        <div d-flexclassName="about-image">
+                        <div className="about-image">
                             
                         </div>
-                        <Container className="about-body kyivserif" >
+                        <Container className="about-body kyivserif" fluid >
                             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
                             At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
                         </Container>
 
                     </div>
@@ -146,13 +147,15 @@ const GridLayout = () => {
                 </Col>
                 
                 <Col xs={6}>
+                <a href="mailto:test@akula.com">
                    <div className="nav-tile nav-tile-highlighted  square position-relative">
                         <span className="top-left">Get in touch</span>
                         {/* <div class="nav-tile-body">Interested in joining us?</div> */}
                         <div className="bottom-right">
-                            <span className="small-text-credit"> mailto: <br/> pryvit@akula.com </span>
+                            <span className="small-text-credit">pryvit@akula.com</span>
                         </div>
                     </div>
+                    </a>
                 </Col>
               </Row>
             </Col>

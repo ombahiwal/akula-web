@@ -90,9 +90,11 @@
 .events-page { height: 100vh; overflow: hidden; } /* outer wrapper */
 
 .events-list-container {
-  height: 100vh;        /* full height */
-  overflow-y: auto;     /* inner scrolling area (use this if you want a scrollable column) */
-  padding-right: 1rem;
+    padding-top: 100%;
+    padding-bottom: 100%;
+    height: 100vh;        /* full height */
+    overflow-y: auto;     /* inner scrolling area (use this if you want a scrollable column) */
+    padding-right: 1rem;
 }
 
 /* other styles */

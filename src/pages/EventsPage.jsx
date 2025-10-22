@@ -107,7 +107,7 @@ const EventsPage = () => {
   if (!itemsRef.current[index] || !containerRef.current) return;
 
   const el = itemsRef.current[index];
-  const top = el.offsetTop;
+  const top = el.offsetTop - window.innerHeight / 2;
 
   gsap.to(containerRef.current, {
     duration: 0.8,
@@ -134,7 +134,7 @@ const EventsPage = () => {
   return (
     <div className="events-page bg-black text-white">
       <Container fluid className="h-100 py-5">
-        <Row>
+        <Row ref={containerRef} className="events-list-container">
           {/* Left sticky column */}
           <Col sm={1} md={6} lg={4} >
             <div className="sticky-col event-fixed text-center">
@@ -153,25 +153,25 @@ const EventsPage = () => {
           {/* Right: scrollable list */}
           <Col
             sm={11} md={6} lg={8}
-            ref={containerRef}
-            className="events-list-container"
           >
-            {events.map((event, idx) => (
-              <div
-                key={idx}
-                ref={(el) => setItemRef(el, idx)}
-                className="event-timeline-entity py-3"
-                onClick={() => scrollToEvent(idx)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="event-content">
-                  <div className="event-timeline-entity-title">
-                    {event.title}
-                  </div>
-                </div>
-                <div className="event-dot" />
-              </div>
-            ))}
+             {/* top spacer */}
+              <div style={{ height: "50vh" }} />
+                {events.map((event, idx) => (
+                <div
+                    key={idx}
+                    ref={(el) => setItemRef(el, idx)}
+                    className="event-timeline-entity py-3"
+                    onClick={() => scrollToEvent(idx)}
+                    style={{ cursor: "pointer" }}
+                >
+                    <div className="event-content">
+                    <div className="event-timeline-entity-title">
+                        {event.title}
+                    </div>
+                    </div>
+                    <div className="event-dot" />
+                </div>))}
+             <div style={{ height: "50vh" }} />
           </Col>
         </Row>
       </Container>

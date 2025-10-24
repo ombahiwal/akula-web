@@ -35,7 +35,6 @@ const TeamPage = () => (
             {/* --- PAST MEMBERS --- */}
             <div
               className="team-section bg-white text-black p-3"
-              style={{ aspectRatio: "1/1", overflowY: "auto" }}
             >
               <h2 className="team-title kyivserif mb-3">Past Members</h2>
               <div className="team-grid">

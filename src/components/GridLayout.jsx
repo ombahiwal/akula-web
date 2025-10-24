@@ -15,41 +15,70 @@ const GridLayout = () => {
                     <Col xs={6} md={3} className="tile-col">
                       <HomeTile
                         frontContent={
-                          <div style={{ color: "black", textAlign: "center" }}>
-                            <h2>Front</h2>
-                          </div>
+                          <Image className="showcase-image" src="/test/music.jpeg" fluid/>
                         }
                         backContent={
-                          <div style={{ color: "#91e600", textAlign: "center" }}>
-                            <h2>Back</h2>
-                            <p>Surprise!</p>
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Music</h2>
+                            <p>of ukraine</p>
                           </div>
                         }
-                        direction="y" // can be "x" or "y"
+                        direction="x"
                       />
                     </Col>
                     <Col xs={6} md={3}>
-                        <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                            Hello
-                        </div>
+                         <HomeTile
+                        frontContent={
+                          <Image className="showcase-image" src="/test/emblem.jpeg" fluid/>
+                        }
+                        backContent={
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Emblem</h2>
+                            <p>of ukraine</p>
+                          </div>
+                        }
+                        direction="y"
+                      />
+                      
+
                     </Col>
                     <Col xs={6} md={3}>
-                        <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                            Hello
-                        </div>
+                         <HomeTile
+                        frontContent={
+                          <Image className="showcase-image" src="/test/plate.jpeg" fluid/>
+                        }
+                        backContent={
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Dishes</h2>
+                            <p>of ukraine</p>
+                          </div>
+                        }
+                        direction="x"
+                      />
+
                     </Col>
                     <Col xs={6} md={3}>
-                        <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                           Hello
-                        </div>
+                        <HomeTile
+                        frontContent={
+                          <Image className="showcase-image" src="/test/dance.jpeg" fluid/>
+                        }
+                        backContent={
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Dances</h2>
+                            <p>of ukraine</p>
+                          </div>
+                        }
+                        direction="y"
+                      />
                     </Col> 
                 </Row>
             </Col>
 
             {/* Big square 1 */}
             <Col xs={12} md={6}>
-                <div className="kyivserif bg-white text-black d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                    AKULA
+                <div className=" ukr-flag-border bg-white text-black d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
+                    <h1>AKULA 
+                    </h1>
                 </div>
             </Col>
 
@@ -57,16 +86,60 @@ const GridLayout = () => {
             <Col xs={12} md={6}>
               <Row className="g-2">
                 <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>5</div>
+                   <HomeTile
+                        frontContent={
+                          <Image className="showcase-image" src="/test/houses.jpeg" fluid/>
+                        }
+                        backContent={
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Houses</h2>
+                            <p>of ukraine</p>
+                          </div>
+                        }
+                        direction="y"
+                      />
                 </Col>
                 <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>6</div>
+                  <HomeTile
+                        frontContent={
+                          <Image className="showcase-image" src="/test/flowers.jpeg" fluid/>
+                        }
+                        backContent={
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Flowers</h2>
+                            <p>of ukraine</p>
+                          </div>
+                        }
+                        direction="x"
+                      />
                 </Col>
                 <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>7</div>
+                  <HomeTile
+                        frontContent={
+                          <Image className="showcase-image" src="/test/patterns.jpeg" fluid/>
+                        }
+                        backContent={
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Patterns</h2>
+                            <p>of ukraine</p>
+                          </div>
+                        }
+                        direction="x"
+                      />
                 </Col>
                 <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>8</div>
+                 <HomeTile
+                        frontContent={
+                          <Image className="showcase-image" src="/test/cat.jpeg" fluid/>
+                        }
+                        backContent={
+                          <div style={{ textAlign: "center" }}>
+                            <h2>Cats</h2>
+                            <p>of ukraine</p>
+                          </div>
+                        }
+                        direction="y"
+                      />
                 </Col>
               </Row>
             </Col>

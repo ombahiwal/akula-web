@@ -213,6 +213,9 @@ button:focus-visible {
   
 }
 
+.tile-col{
+  border-radius: 0;
+}
 
 /* Medium screens (tablets, etc.) */
 @media (max-width: 992px) {

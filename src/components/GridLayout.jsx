@@ -3,6 +3,7 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FlagToText from "./FlagToText";
 import {Link} from 'react-router-dom'
+import HomeTile from "./HomeTile";
 const GridLayout = () => {
   return (
     <div className="d-flex overflow-hidden bg-black">
@@ -11,10 +12,21 @@ const GridLayout = () => {
           <Row className="g-2 justify-content-center">
             <Col xs={12}>
                 <Row className="g-2">
-                    <Col xs={6} md={3}>
-                        <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                            Hello
-                        </div>
+                    <Col xs={6} md={3} className="tile-col">
+                      <HomeTile
+                        frontContent={
+                          <div style={{ color: "black", textAlign: "center" }}>
+                            <h2>Front</h2>
+                          </div>
+                        }
+                        backContent={
+                          <div style={{ color: "#91e600", textAlign: "center" }}>
+                            <h2>Back</h2>
+                            <p>Surprise!</p>
+                          </div>
+                        }
+                        direction="y" // can be "x" or "y"
+                      />
                     </Col>
                     <Col xs={6} md={3}>
                         <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
@@ -135,10 +147,12 @@ const GridLayout = () => {
                   </div>
                 </Col>
                 <Col xs={6}>
+                <Link to="/board">
                   <div className="square nav-tile  position-relative">
-                        <span className="top-left">The<br/>AKULA<br/>Team </span>
+                        <span className="top-left">The<br/>AKULA<br/>Board </span>
                         <span className="bottom-right">➔</span>
                     </div>
+                </Link>
                 </Col>
                 <Col xs={6}>
                   <div className="bg-white e d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>

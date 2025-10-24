@@ -22,10 +22,14 @@ const TeamPage = () => (
             {/* --- CURRENT TEAM --- */}
             <div
               className="team-section bg-white text-black p-3 mb-4"
-              
             >
-              <h2 className="team-title kyivserif mb-3">The AKULA Board</h2>
+              
               <div className="team-grid">
+                 <div className="team-card-heading">
+                  <div className="team-info">
+                    <h2 className="team-title kyivserif mb-3">The AKULA Board</h2>
+                  </div>
+                </div>
                 {teamMembers.map((member) => (
                   <TeamCard key={member.id} member={member} />
                 ))}
@@ -36,8 +40,13 @@ const TeamPage = () => (
             <div
               className="team-section bg-white text-black p-3"
             >
-              <h2 className="team-title kyivserif mb-3">Past Members</h2>
+              
               <div className="team-grid">
+                <div className="team-card-heading">
+                  <div className="team-info">
+                    <h2 className="team-title kyivserif mb-3">Past Members</h2>
+                  </div>
+                </div>
                 {pastMembers.map((member) => (
                   <TeamCard key={member.id} member={member} />
                 ))}

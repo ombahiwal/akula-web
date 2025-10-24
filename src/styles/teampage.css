@@ -7,20 +7,40 @@
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  /* margin-bottom: 3rem; */
 }
 
 .team-card {
   text-align: center;
+  background-color: white;
   /* border: 1px solid green; */
   aspect-ratio: 1/1;
-   border: 5px solid; /* or any width you like */
+   border: 6px solid; /* or any width you like */
   border-image: linear-gradient(to bottom, #FFD700 50%, #0057b8 50%) 1;
   border-radius: 12px; /* optional */
 }
 
+.team-card-heading{
+  
+  background-color: white;
+  word-spacing: 100vw;
+  text-align: left;
+  padding: 5px;
+
+  aspect-ratio: 1/1;
+   border: 6px solid black; /* or any width you like */
+}
+
+/* Small screens (phones) */
+@media (max-width: 770px) {
+
+  .team-card-heading{
+    max-height: 200px;
+  }
+
+}
 .team-photo {
   width: 100%;
   height: auto;
@@ -43,6 +63,7 @@
 }
 
 .team-title{
+  line-height: 85%;
     font-size: 2rem;
     font-weight: 800;
 }

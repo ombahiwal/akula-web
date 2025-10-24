@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TeamPage.css";
+import "../styles/teampage.css";
 import { teamMembers, pastMembers } from "../components/teamData"; // import both lists
 import { Container, Row, Col } from "react-bootstrap";
 

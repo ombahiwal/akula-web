@@ -143,7 +143,7 @@ const EventsPage = () => {
               <div className="event-current-year">{currentYear}</div>
               <div className="event-current-image">
                 {currentImage && (
-                  <ImageCarousel images={[currentImage[0]]} interval={2000}/>
+                  <ImageCarousel images={currentImage} interval={4000}/>
                 )}
               </div>
             </div>

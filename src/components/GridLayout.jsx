@@ -20,6 +20,20 @@ const GridLayout = () => {
             });
       }, []);
 
+      function parseDateTime(isoString) {
+        const [datePart, timePart] = isoString.split("T");
+        const [year, month, day] = datePart.split("-");
+
+        return {
+          year,
+          month,
+          day,
+          time: timePart || "00:00", // fallback if no time
+          date: day + "." + month + "." + year
+        };
+      }
+
+
   return (
     <div className="d-flex overflow-hidden bg-black">
       <div className="flex-grow-1 p-2 overflow-auto d-flex ">
@@ -178,18 +192,19 @@ const GridLayout = () => {
                             <HomeTile
                                   frontContent={
                                     <div className="event-tile" >
-                                      <div className="event-tile-bg" style={{backgroundImage:"url("+event_post.fields.images[0]+")", backgroundSize: "cover"}}></div>
+                                      <div className="event-tile-bg" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.4)), url("+event_post.fields.images[0]+")", backgroundSize: "cover"}}></div>
                                       <div className="event-tile-content">
-                                        <h2 className="event-tile-title">{event_post.fields.eventTitle}</h2>
-                                        <p>{event_post.fields.eventDesc}</p>
-                                        <span>{event_post.fields.eventDate}</span>
+                                        <div>
+                                          <h2 className="event-tile-title">{event_post.fields.eventTitle}</h2>
+                                          
+                                          <small>{parseDateTime(event_post.fields.eventDate).date}</small>
+                                        </div>
                                       </div>
                                     </div>
                                   }
                                   backContent={
-                                    <div className="event-tile" >
-                                            <p>{event_post.fields.shortDescription}</p>                                            
-                                            <span className="text-secondary">{event_post.fields.authors}</span>
+                                    <div className="event-tile text-black" >
+                                            <p>{event_post.fields.eventDesc}</p>                                           
                                     </div>
                                   }
                                   direction="y"
@@ -220,11 +235,12 @@ const GridLayout = () => {
                                         frontContent={
                                           
                                           <div className="event-tile" >
-                                            <div className="event-tile-bg" style={{backgroundImage:"url("+blog_post.fields.thumbnail+")", backgroundSize: "cover"}}></div>
+                                            <div className="event-tile-bg" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.5)), url("+blog_post.fields.thumbnail+")", backgroundSize: "cover"}}></div>
                                             <div className="event-tile-content">
-                                            <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
-                                            <p>{blog_post.fields.shortDescription}</p>
-                                            <span>{blog_post.fields.postDateTime}</span>
+                                            <div>
+                                                <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
+                                                <small>{parseDateTime(blog_post.fields.postDateTime).date}</small>
+                                            </div>
                                             </div>
                                           </div>
                                         }

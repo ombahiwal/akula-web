@@ -223,7 +223,7 @@ button:focus-visible {
 }
 .ukr-flag-border{
   border: 10px solid; /* or any width you like */
-  border-image: linear-gradient(to bottom, #FFD700 50%, #0057b8 50%) 1;
+  border-image: linear-gradient(to bottom,  #0057b8 50%, #FFD700 50%) 1;
   /* border-radius: 12px; optional */
 }
 

@@ -1,23 +1,38 @@
 import React from "react";
 import "../styles/teampage.css";
-import { teamMembers, pastMembers } from "../components/teamData"; // import both lists
+// import {  pastMembers } from "../components/teamData"; // import both lists
 import { Container, Row, Col } from "react-bootstrap";
+import { useEffect, useState} from "react";
+import { getContent } from "../api/cfclient";
 
 const TeamCard = ({ member }) => (
   <div className="team-card">
-    <img className="team-photo" src={member.photoUrl} alt={member.name} />
+    <img className="team-photo" src={member.fields.memberImage} />
     <div className="team-info">
-      <h3 className="team-name">{member.name}</h3>
-      <p className="team-role">{member.role}</p>
+      <a href={member.fields.memberLink}><h3 className="team-name">{member.fields.memberNameEn}</h3></a>
+      <a href={"mailto:"+(member.fields.memberEmail)}><p className="team-role">{member.fields.memberRole}</p></a>
     </div>
   </div>
 );
 
-const TeamPage = () => (
+const TeamPage = () => {
+  const [data, setData] = useState({boardMembers:[]});
+   useEffect(() => {
+      getContent("info_section").then((data_resp)  => {
+              setData(data_resp);
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth", // or "auto"
+              });
+          });
+    }, []);
+  
+  return(
   <div className="d-flex overflow-hidden bg-black">
     <div className="flex-grow-1 p-2 overflow-auto d-flex">
       <Container>
         <Row className="g-2 justify-content-center">
+          
           <Col>
             {/* --- CURRENT TEAM --- */}
             <div
@@ -30,9 +45,16 @@ const TeamPage = () => (
                     <h2 className="team-title kyivserif mb-3">The AKULA Board</h2>
                   </div>
                 </div>
-                {teamMembers.map((member) => (
+                {data && data['boardMembers'].map((member) => {
+                  
+                      if (member.fields.pastMember == false){
+                        return(<TeamCard key={member.id} member={member} />)
+                      };
+                    })}
+
+                {/* {data && data['boardMembers'].map((member) => (
                   <TeamCard key={member.id} member={member} />
-                ))}
+                ))} */}
               </div>
             </div>
 
@@ -47,9 +69,11 @@ const TeamPage = () => (
                     <h2 className="team-title kyivserif mb-3">Past Members</h2>
                   </div>
                 </div>
-                {pastMembers.map((member) => (
-                  <TeamCard key={member.id} member={member} />
-                ))}
+                  {data && data['boardMembers'].map((member) => {
+                      if (member.fields.pastMember == true){
+                        return(<TeamCard key={member.id} member={member} />)
+                      };
+                    })}
               </div>
             </div>
           </Col>
@@ -57,7 +81,7 @@ const TeamPage = () => (
         </Row>
       </Container>
     </div>
-  </div>
-);
+  </div>);
+}
 
 export default TeamPage;

@@ -7,6 +7,7 @@ import { getContent } from "../api/cfclient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Eventpage.css";
 import ImageCarousel from "../components/ImageCarousel";
+import {Link} from 'react-router-dom';
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function parseDateTime(isoString) {
@@ -18,6 +19,7 @@ function parseDateTime(isoString) {
     month,
     day,
     time: timePart || "00:00", // fallback if no time
+    md: month + "." + day
   };
 }
 
@@ -25,6 +27,7 @@ const EventsPage = () => {
   const [events, setEvents] = useState([]); // fetched events
   const [currentYear, setCurrentYear] = useState("");
   const [currentImage, setCurrentImage] = useState("");
+  const [currentMD, setCurrentMD] = useState("");
   const containerRef = useRef(null);
   const itemsRef = useRef([]);
   itemsRef.current = itemsRef.current || [];
@@ -36,12 +39,13 @@ const EventsPage = () => {
   // Fetch events from API
   useEffect(() => {
   getContent("info_section").then((data_resp) => {
-    console.log(data_resp)
+    
     // Ensure data_resp.items exists and is an array
     const fetchedEvents = data_resp['eventsTimeline'].map((item) => ({
           dt:parseDateTime(item.fields?.eventDate),
           year: item.fields?.eventDate || "",
           title: item.fields?.eventTitle || "",
+          id: item.id || "",
           image: item.fields?.images || "https://placehold.co/400x300?text=no-image",
         }));
 
@@ -49,6 +53,7 @@ const EventsPage = () => {
 
     if (fetchedEvents.length > 0) {
       setCurrentYear(fetchedEvents[0].dt.year);
+      setCurrentMD(fetchedEvents[0].dt.md);
       setCurrentImage(fetchedEvents[0].image);
     }
   }).catch((err) => {
@@ -86,11 +91,13 @@ const EventsPage = () => {
         end: "bottom center",
         onEnter: () => {
           setCurrentYear(events[i].dt.year);
+          setCurrentMD(events[i].dt.md);
           setCurrentImage(events[i].image);
           highlightItem(i);
         },
         onEnterBack: () => {
           setCurrentYear(events[i].dt.year);
+          setCurrentMD(events[0].dt.md);
           setCurrentImage(events[i].image);
           highlightItem(i);
         },
@@ -118,6 +125,7 @@ const EventsPage = () => {
       scrollTo: { y: top, autoKill: true },
       onComplete: () => {
         setCurrentYear(events[index].dt.year);
+        setCurrentMD(events[index].dt.md);
         setCurrentImage(events[index].image);
 
         // highlight clicked item
@@ -140,10 +148,12 @@ const EventsPage = () => {
           {/* Left sticky column */}
           <Col sm={1} md={6} lg={4}>
             <div className="sticky-col event-fixed text-center">
-              <div className="event-current-year">{currentYear}</div>
+              
+              <div className="event-current-year"><small className="event-current-md">{currentMD}</small>.{currentYear}</div>
+              
               <div className="event-current-image">
                 {currentImage && (
-                  <ImageCarousel images={currentImage} interval={4000}/>
+                  <ImageCarousel images={[currentImage[0]]} interval={3000}/>
                 )}
               </div>
             </div>
@@ -161,7 +171,7 @@ const EventsPage = () => {
                 style={{ cursor: "pointer" }}
               >
                 <div className="event-content">
-                  <div className="event-timeline-entity-title">{event.title}</div>
+                  <Link to={"/events/"+event.id}><div className="event-timeline-entity-title">{event.title}</div></Link>
                 </div>
                 <div className="event-dot" />
               </div>

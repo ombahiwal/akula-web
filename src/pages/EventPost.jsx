@@ -5,10 +5,12 @@ import { getContent } from "../api/cfclient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
-import '../styles/BlogPost.css';
-const BlogPost = () => {
+import '../styles/eventpost.css';
+import ImageCarousel from "../components/ImageCarousel";
+import Markdown from "react-markdown";
+const EventPost = () => {
   const { id } = useParams();
-  const [blogPost, setBlogPost] = useState(null);
+  const [eventPost, setEventPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
 
@@ -57,11 +59,11 @@ const BlogPost = () => {
 
   useEffect(() => {
     getContent("info_section").then((data_resp) => {
-      const post = data_resp["blogPosts"].find(
+      const post = data_resp["eventsTimeline"].find(
         (item) => String(item.id) === String(id)
       );
       
-      setBlogPost(post || null);
+      setEventPost(post || null);
       setLoading(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -75,39 +77,47 @@ const BlogPost = () => {
     );
   }
 
-  if (!blogPost) {
+  if (!eventPost) {
     return (
       <Container className="text-center mt-5">
-        <h2>Blog not found</h2>
-        <Link to="/blog">
+        <h2>Event not found</h2>
+        <Link to="/Event">
           <Button variant="warning" className="mt-3">
-            Back to Blogs
+            Back to Events
           </Button>
         </Link>
       </Container>
     );
   }
 
-  const { postTitle, postDateTime, authors, blogBody } = blogPost.fields;
+  const { eventDate, eventDescEn, eventTitle, eventArticle, images } = eventPost.fields;
 
   return (
     <div className="d-flex overflow-hidden">
       <div className="flex-grow-1 p-2 overflow-auto d-flex  bg-white">
         <Container fluid>
+            <Row className="g-2 event-gallery">
+                {images.map((imgs, idx)=>{
+                    return(
+                      <Col key={idx} xs={12} sm={6} md={4} lg={4}>
+                        <Image src={imgs} fluid/>
+                    </Col>)
+                })}
+            </Row>
           <Row className="g-2">
+                
               <Col xs={12} className="align-content-center">
               <div className="post-heading">
-                <h1 className="post-title">{postTitle}</h1>
-                <h6 className="text-secondary d-block mb-3">{authors}</h6>
-                <h6 className="text-secondary d-block mb-3">{parseDateTime(postDateTime).date}</h6>
+                <h1 className="post-title">{eventTitle}</h1>
+                <h6 className="text-secondary d-block mb-3">{parseDateTime(eventDate).date}</h6>
               </div>
-              <div className="blog-body">
-              {documentToReactComponents(blogBody, options)}
+              <div className="event-body">
+                {eventArticle ? documentToReactComponents(eventArticle, options) : <Markdown>{eventDescEn}</Markdown>}
               </div>
             </Col>
              <Col>
-              <div className="blog-card-heading">
-                  AKULA Blog
+              <div className="event-card-heading">
+                  AKULA Events
                       {/* <h2 className="mb-3"></h2> */}
                   </div>
             </Col>
@@ -118,4 +128,4 @@ const BlogPost = () => {
   );
 };
 
-export default BlogPost;
+export default EventPost;

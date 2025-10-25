@@ -1,0 +1,49 @@
+.blog-detail-image {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.blog-body {
+  color: #000;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  text-align: justify;
+  margin: 2rem;
+  margin-top: 0;
+}
+
+.post-heading{
+  text-align: center;
+}
+
+.post-title{
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+ .blog-body h2, .blog-body h3 {
+}
+
+.blog-body{
+  margin-bottom: 1rem;
+}
+a{
+    color: #0057b8;
+}
+
+.blog-card-heading{
+    max-height: 30vh;
+    line-height: 90%;
+    color:black;
+    background-color: white;
+    word-spacing: 100vw;
+    text-align: left;
+    padding: 5px;
+    aspect-ratio: 1/1;
+    border: 6px solid black; /* or any width you like */
+    margin-bottom: 3%;
+    padding: 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+}

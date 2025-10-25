@@ -1,0 +1,53 @@
+.event-detail-image {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.event-body {
+    color: #000;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  text-align: left;
+  
+}
+.event-gallery{
+margin-bottom: 2rem;
+}
+.post-heading{
+  text-align: center;
+}
+
+.post-title{
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+ .event-body h2, .event-body h3 {
+}
+
+.event-body{
+  margin: 2rem;
+  margin-top: 0;
+  text-align: justify;
+  justify-content: center;
+}
+a{
+    color: #0057b8;
+}
+
+.event-card-heading{
+    max-height: 30vh;
+    line-height: 90%;
+    color:black;
+    background-color: white;
+    word-spacing: 100vw;
+    text-align: left;
+    padding: 5px;
+    aspect-ratio: 1/1;
+    border: 6px solid black; /* or any width you like */
+    margin-bottom: 3%;
+    padding: 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+}

@@ -36,7 +36,7 @@ const ImageCarousel = ({ images, interval = 3000 }) => {
         height: "100%",
         overflow: "hidden",
         position: "relative",
-        background: "#000",
+        background: "none",
       }}
     >
       <div

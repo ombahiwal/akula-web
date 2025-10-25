@@ -224,6 +224,10 @@ button:focus-visible {
   padding: 1rem;
   
 }
+.event-tile-desc{
+  color:#000;
+  font-size: 1rem;
+}
 .event-tile-content{
   height: 100%;
     position: relative;

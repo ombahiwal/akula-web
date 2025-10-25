@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import Markdown from "react-markdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FlagToText from "./FlagToText";
 import {Link} from 'react-router-dom'
@@ -9,10 +10,12 @@ import { getContent } from "../api/cfclient";
 const GridLayout = () => {
 
     const [data, setData] = useState({eventsTimeline:[], blogPosts:[]});
+    const [highlights, setHighlights] = useState(null);
      useEffect(() => {
         getContent("info_section").then((data_resp)  => {
                 setData(data_resp);
-                console.log(data_resp)
+                setHighlights(data_resp['blogPosts'].filter((post) => post.fields.highlight))
+                
                 window.scrollTo({
                   top: 0,
                   behavior: "smooth", // or "auto"
@@ -189,26 +192,28 @@ const GridLayout = () => {
                   {data && data['eventsTimeline'].slice(0,3).map((event_post)=>{
                     
                     return(<Col key={event_post.id} xs={6}>
-                            <HomeTile
-                                  frontContent={
-                                    <div className="event-tile" >
-                                      <div className="event-tile-bg" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.4)), url("+event_post.fields.images[0]+")", backgroundSize: "cover"}}></div>
-                                      <div className="event-tile-content">
-                                        <div>
-                                          <h2 className="event-tile-title">{event_post.fields.eventTitle}</h2>
-                                          
-                                          <small>{parseDateTime(event_post.fields.eventDate).date}</small>
+                          <Link to={"/events/"+event_post.id}>
+                              <HomeTile
+                                    frontContent={
+                                      <div className="event-tile" >
+                                        <div className="event-tile-bg" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.4)), url("+event_post.fields.images[0]+")", backgroundSize: "cover"}}></div>
+                                        <div className="event-tile-content">
+                                          <div>
+                                            <h2 className="event-tile-title">{event_post.fields.eventTitle}</h2>
+                                            
+                                            <small>{parseDateTime(event_post.fields.eventDate).date}</small>
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  }
-                                  backContent={
-                                    <div className="event-tile text-black" >
-                                            <p>{event_post.fields.eventDesc}</p>                                           
-                                    </div>
-                                  }
-                                  direction="y"
-                                />
+                                    }
+                                    backContent={
+                                      <div className="event-tile text-black event-tile-desc" >
+                                              <Markdown>{event_post.fields.eventDescEn}</Markdown>
+                                      </div>
+                                    }
+                                    direction="y"
+                                  />
+                            </Link>
                           </Col>)
 
                   })}
@@ -245,9 +250,9 @@ const GridLayout = () => {
                                           </div>
                                         }
                                         backContent={
-                                           <div className="event-tile" >
-                                            <p>{blog_post.fields.shortDescription}</p>                                            
+                                           <div className="event-tile text-black" >
                                             <span className="text-secondary">{blog_post.fields.authors}</span>
+                                            <Markdown>{blog_post.fields.shortDescription}</Markdown>
                                           </div>
                                         }
                                         direction="x"
@@ -284,11 +289,38 @@ const GridLayout = () => {
             <Col xs={12} md={6}>
               <Row className="g-2">
                 
-                <Col xs={6}>
-                  <div className="bg-white  d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                  Highlight 1 
-                  </div>
-                </Col>
+                
+                  {highlights && highlights.slice(0,1).map((blog_post)=>{
+
+                    return(<Col key={blog_post.id} xs={6}>
+                            <Link to={"/blog/"+blog_post.id}>
+                                  <HomeTile
+                                        frontContent={
+                                          
+                                          <div className="event-tile" >
+                                            <div className="event-tile-bg" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.5)), url("+blog_post.fields.thumbnail+")", backgroundSize: "cover"}}></div>
+                                            <div className="event-tile-content">
+                                            <div>
+                                                <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
+                                                <small>{parseDateTime(blog_post.fields.postDateTime).date}</small>
+                                            </div>
+                                            </div>
+                                          </div>
+                                        }
+                                        backContent={
+                                           <div className="event-tile text-black" >
+                                            <span className="text-secondary">{blog_post.fields.authors}</span>
+                                            <Markdown>{blog_post.fields.shortDescription}</Markdown>
+                                          </div>
+                                        }
+                                        direction="y"
+                                      /> 
+                            </Link>
+                          </Col>
+                    )
+
+                  })}
+                
                 <Col xs={6}>
                 <Link to="/board">
                   <div className="square nav-tile  position-relative">
@@ -297,11 +329,37 @@ const GridLayout = () => {
                     </div>
                 </Link>
                 </Col>
-                <Col xs={6}>
-                  <div className="bg-white e d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                    Highlight 2 (useful links)
-                  </div>
-                </Col>
+
+                  {highlights && highlights.slice(1,2).map((blog_post)=>{
+
+                    return(<Col key={blog_post.id} xs={6}>
+                            <Link to={"/blog/"+blog_post.id}>
+                                  <HomeTile
+                                        frontContent={
+                                          
+                                          <div className="event-tile" >
+                                            <div className="event-tile-bg" style={{backgroundImage:"linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.5)), url("+blog_post.fields.thumbnail+")", backgroundSize: "cover"}}></div>
+                                            <div className="event-tile-content">
+                                            <div>
+                                                <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
+                                                <small>{parseDateTime(blog_post.fields.postDateTime).date}</small>
+                                            </div>
+                                            </div>
+                                          </div>
+                                        }
+                                        backContent={
+                                           <div className="event-tile text-black" >
+                                            <span className="text-secondary">{blog_post.fields.authors}</span>
+                                            <Markdown>{blog_post.fields.shortDescription}</Markdown>
+                                          </div>
+                                        }
+                                        direction="x"
+                                      /> 
+                            </Link>
+                          </Col>
+                    )
+
+                  })}
                 
                 <Col xs={6}>
                 <a href="mailto:test@akula.com">

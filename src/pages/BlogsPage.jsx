@@ -14,7 +14,7 @@ const BlogsPage = () => {
 
      useEffect(() => {
         getContent("info_section").then((data_resp)  => {
-            console.log(data_resp['blogPosts'])
+
                 setPosts(data_resp['blogPosts']);
                 window.scrollTo({
                   top: 0,

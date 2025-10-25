@@ -5,7 +5,7 @@ import { getContent } from "../api/cfclient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
-import '../styles/BlogPost.css';
+import '../styles/blogpost.css';
 const BlogPost = () => {
   const { id } = useParams();
   const [blogPost, setBlogPost] = useState(null);

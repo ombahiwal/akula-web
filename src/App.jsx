@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import EventsPage from './pages/EventsPage.jsx'
 import TeamPage from './pages/TeamPage.jsx'
+import BlogsPage from './pages/BlogsPage.jsx'
+import BlogPost from './pages/BlogPost.jsx'
 function App() {
 
 
@@ -12,6 +14,8 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/events" element={<EventsPage/>} />
       <Route path="/board" element={<TeamPage/>} />
+      <Route path="/blog" element={<BlogsPage/>} />
+      <Route path="/blog/:id" element={<BlogPost/>} />
       {/* add more routes here later */}
     </Routes>
   )

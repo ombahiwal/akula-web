@@ -1,0 +1,50 @@
+.search-bar{
+    border-radius: 0;
+    border: 4px solid #FFD700;
+}
+
+.blog-post-tile{
+    text-align: left;
+    border-radius: 0;
+    border-bottom: 2px solid lightgrey;
+    color:black;
+}
+.blog-link-title{
+    text-decoration: none;
+    line-height: 90%;
+    color: #0057b8;
+    font-size: 2rem;
+}
+.blog-link-title:hover{
+    color: #FFD700
+}
+
+.blog-card-heading{
+    max-height: 30vh;
+    line-height: 90%;
+    color:black;
+    background-color: white;
+    word-spacing: 100vw;
+    text-align: left;
+    padding: 5px;
+    aspect-ratio: 1/1;
+    border: 6px solid black; /* or any width you like */
+    margin-bottom: 3%;
+    padding: 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+}
+.authors{
+    color: grey;
+    font-weight: 400;
+}
+.tile-col{
+  min-height: 25%;
+
+}
+@media (max-width: 770px) {
+
+  .blog-card-heading{
+    font-size: 2rem;
+  }
+}

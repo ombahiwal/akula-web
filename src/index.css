@@ -212,7 +212,33 @@ button:focus-visible {
 .event-timeline-entity-desc{
   
 }
-
+.event-tile{
+  width: 100%;
+  aspect-ratio: 1 / 1; /* keeps perfect square */
+  position: relative;
+  font-family: "Kyiv Type Sans";
+  text-align: left;
+  /* border: 2px solid white; */
+  color:#000;
+  background-color: white;
+  padding: 1rem;
+  
+}
+.event-tile-content{
+  position: relative;
+}
+.event-tile-bg{
+  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.event-tile-title{
+  font-size: 2rem;
+ font-weight: 600; 
+}
 .tile-col{
   border-radius: 0;
 }
@@ -221,24 +247,37 @@ button:focus-visible {
   width: 100%;
   height: 100%;
 }
+.showcase-image{
+width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1 / 1; /* Force square shape */
+  display: block; 
+}
 .ukr-flag-border{
   border: 10px solid; /* or any width you like */
   border-image: linear-gradient(to bottom,  #0057b8 50%, #FFD700 50%) 1;
   /* border-radius: 12px; optional */
 }
 
+
 /* Medium screens (tablets, etc.) */
 @media (max-width: 992px) {
  .small-text-credit{
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
   }
+  .event-tile-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
 }
 
 /* Small screens (phones) */
 @media (max-width: 576px) {
 
-
+  
   .square{
     font-size: 1.8rem;
   }
@@ -251,7 +290,7 @@ button:focus-visible {
     font-size: 0.8rem;
   }
   .small-text-credit{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 500;
   }
 

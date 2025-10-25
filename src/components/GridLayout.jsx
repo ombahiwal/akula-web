@@ -1,10 +1,25 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FlagToText from "./FlagToText";
 import {Link} from 'react-router-dom'
 import HomeTile from "./HomeTile";
+import { getContent } from "../api/cfclient";
+
 const GridLayout = () => {
+
+    const [data, setData] = useState({eventsTimeline:[], blogPosts:[]});
+     useEffect(() => {
+        getContent("info_section").then((data_resp)  => {
+                setData(data_resp);
+                console.log(data_resp)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth", // or "auto"
+                });
+            });
+      }, []);
+
   return (
     <div className="d-flex overflow-hidden bg-black">
       <div className="flex-grow-1 p-2 overflow-auto d-flex ">
@@ -86,6 +101,7 @@ const GridLayout = () => {
             <Col xs={12} md={6}>
               <Row className="g-2">
                 <Col xs={6}>
+                
                    <HomeTile
                         frontContent={
                           <Image className="showcase-image" src="/test/houses.jpeg" fluid/>
@@ -155,17 +171,33 @@ const GridLayout = () => {
                 </div>
                 </Link>
                 </Col>
-                <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>10</div>
-                </Col>
-                <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>11</div>
-                </Col>
-                <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
 
-                  </div>
-                </Col>
+                  {data && data['eventsTimeline'].slice(0,3).map((event_post)=>{
+                    
+                    return(<Col key={event_post.id} xs={6}>
+                            <HomeTile
+                                  frontContent={
+                                    <div className="event-tile" >
+                                      <div className="event-tile-bg" style={{backgroundImage:"url("+event_post.fields.images[0]+")", backgroundSize: "cover"}}></div>
+                                      <div className="event-tile-content">
+                                        <h2 className="event-tile-title">{event_post.fields.eventTitle}</h2>
+                                        <p>{event_post.fields.eventDesc}</p>
+                                        <span>{event_post.fields.eventDate}</span>
+                                      </div>
+                                    </div>
+                                  }
+                                  backContent={
+                                    <div className="event-tile" >
+                                            <p>{event_post.fields.shortDescription}</p>                                            
+                                            <span className="text-secondary">{event_post.fields.authors}</span>
+                                    </div>
+                                  }
+                                  direction="y"
+                                />
+                          </Col>)
+
+                  })}
+
               </Row>
             </Col>
 
@@ -173,20 +205,42 @@ const GridLayout = () => {
             <Col xs={12} md={6}>
               <Row className="g-2">
                 <Col xs={6}>
+                  <Link to={'/blog'}>
                     <div className="square nav-tile position-relative">
                         <span className="top-left">Blog posts</span>
                         <span className="bottom-right">➔</span>
                     </div>
+                    </Link>
                 </Col>
-                <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>14</div>
-                </Col>
-                <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>15</div>
-                </Col>
-                <Col xs={6}>
-                  <div className="bg-white text-white d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>16</div>
-                </Col>
+                   {data && data['blogPosts'].slice(0,3).map((blog_post)=>{
+                    
+                    return(<Col key={blog_post.id} xs={6}>
+                            <Link to={"/blog/"+blog_post.id}>
+                                  <HomeTile
+                                        frontContent={
+                                          
+                                          <div className="event-tile" >
+                                            <div className="event-tile-bg" style={{backgroundImage:"url("+blog_post.fields.thumbnail+")", backgroundSize: "cover"}}></div>
+                                            <div className="event-tile-content">
+                                            <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
+                                            <p>{blog_post.fields.shortDescription}</p>
+                                            <span>{blog_post.fields.postDateTime}</span>
+                                            </div>
+                                          </div>
+                                        }
+                                        backContent={
+                                           <div className="event-tile" >
+                                            <p>{blog_post.fields.shortDescription}</p>                                            
+                                            <span className="text-secondary">{blog_post.fields.authors}</span>
+                                          </div>
+                                        }
+                                        direction="x"
+                                      /> 
+                            </Link>
+                          </Col>
+                    )
+
+                  })}
               </Row>
             </Col>
 

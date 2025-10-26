@@ -11,6 +11,8 @@ import {Link} from 'react-router-dom';
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function parseDateTime(isoString) {
+   if(!isoString)
+        return ""
   const [datePart, timePart] = isoString.split("T");
   const [year, month, day] = datePart.split("-");
 

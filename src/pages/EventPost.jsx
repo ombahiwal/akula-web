@@ -15,6 +15,8 @@ const EventPost = () => {
 
 
   function parseDateTime(isoString) {
+    if(!isoString)
+        return ""
       const [datePart, timePart] = isoString.split("T");
       const [year, month, day] = datePart.split("-");
 
@@ -24,7 +26,7 @@ const EventPost = () => {
         day,
         time: timePart || "00:00", // fallback if no time
         md: month + "." + day,
-        date:  month + "." + day + "." + year
+        date:   day + "." + month + "." + year
       };
     }
 

@@ -4,6 +4,23 @@ import { getContent } from "../api/cfclient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/blogspage.css";
 import {Link} from 'react-router-dom';
+
+ function parseDateTime(isoString) {
+    if(!isoString)
+        return ""
+      const [datePart, timePart] = isoString.split("T");
+      const [year, month, day] = datePart.split("-");
+
+      return {
+        year,
+        month,
+        day,
+        time: timePart || "00:00", // fallback if no time
+        md: month + "." + day,
+        date:   day + "." + month + "." + year
+      };
+    }
+
 const BlogsPage = () => {
   const [blogPosts, setPosts] = useState([]);
 
@@ -75,7 +92,7 @@ const BlogsPage = () => {
                         <small className="authors">{post.fields.authors}</small> <br/>
                         <small>{post.fields.shortDescription}</small>
                     </div>
-                    <small className="text-secondary">{post.fields.postDateTime}</small>
+                    <small className="text-secondary">{parseDateTime(post.fields.postDateTime).date}</small>
                   </div>
                 </Col>
                 </Row>

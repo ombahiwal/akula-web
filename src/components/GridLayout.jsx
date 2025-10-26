@@ -201,7 +201,7 @@ const GridLayout = () => {
                                           <div>
                                             <h2 className="event-tile-title">{event_post.fields.eventTitle}</h2>
                                             
-                                            <small>{parseDateTime(event_post.fields.eventDate).date}</small>
+                                            <small>{event_post.fields.eventDate && parseDateTime(event_post.fields.eventDate).date}</small>
                                           </div>
                                         </div>
                                       </div>
@@ -244,7 +244,7 @@ const GridLayout = () => {
                                             <div className="event-tile-content">
                                             <div>
                                                 <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
-                                                <small>{parseDateTime(blog_post.fields.postDateTime).date}</small>
+                                                <small>{blog_post.fields.postDateTime && parseDateTime(blog_post.fields.postDateTime).date}</small>
                                             </div>
                                             </div>
                                           </div>
@@ -302,7 +302,7 @@ const GridLayout = () => {
                                             <div className="event-tile-content">
                                             <div>
                                                 <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
-                                                <small>{parseDateTime(blog_post.fields.postDateTime).date}</small>
+                                                <small>{blog_post.fields.postDateTime && parseDateTime(blog_post.fields.postDateTime).date}</small>
                                             </div>
                                             </div>
                                           </div>
@@ -342,7 +342,7 @@ const GridLayout = () => {
                                             <div className="event-tile-content">
                                             <div>
                                                 <h2 className="event-tile-title">{blog_post.fields.postTitle}</h2>
-                                                <small>{parseDateTime(blog_post.fields.postDateTime).date}</small>
+                                                <small>{blog_post.fields.postDateTime && parseDateTime(blog_post.fields.postDateTime).date}</small>
                                             </div>
                                             </div>
                                           </div>

@@ -1,29 +1,108 @@
-.event-timeline-entity{
-  font-family: 'Kyiv Type Sans';
-  /* padding: 1rem;   */
-  
+/* Timeline Structure */
+.timeline-wrapper {
+  position: relative;
+  padding-left: 4rem;
 }
 
-.event-timeline-entity-title{
-    text-align: left;
-  font-size: 4rem;
-  font-weight: 800;
+.timeline-line {
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #0057b8 0%, #ffd700 50%, #0057b8 100%);
+}
+
+.timeline-year-group {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+/* Year Marker */
+.timeline-year-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+.timeline-year-dot {
+  position: absolute;
+  left: -2.5rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffd700;
+  border: 4px solid #000;
+  z-index: 2;
+}
+
+.timeline-year-label {
+  font-family: 'Kyiv Type Serif';
+  font-size: 2.5rem;
+  font-weight: 700;
   color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Event Entity */
+.event-timeline-entity {
+  font-family: 'Kyiv Type Sans';
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.event-timeline-date-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+  position: relative;
+}
+
+.event-date-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0057b8;
+  border: 3px solid #000;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0.5rem;
+}
+
+.event-date-label {
+  font-family: 'Kyiv Type Serif';
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #888;
+  white-space: nowrap;
+}
+
+.event-content {
+  flex: 1;
+}
+
+.event-timeline-entity-title {
+  text-align: left;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #0057b8;
   line-height: 90%;
-  transition: color .25s ease, transform .25s ease; 
+  transition: color 0.25s ease, transform 0.25s ease;
   text-decoration: none;
+  display: block;
 }
 
 .timeline-items{
     text-align: left;
-}
-
-.event-timeline-entity-date{
-  
-}
-
-.event-timeline-entity-desc{
-  
 }
 .event-timeline-year{
     font-family: 'Kyiv Type Serif';
@@ -63,11 +142,12 @@
 }
 
 .event-current-image {
- 
+  margin-top: 1rem;
 }
 
 .event-current-image img {
- 
+  width: 100%;
+  height: auto;
 }
 
 .slide-img {
@@ -83,45 +163,107 @@
 }
 
 
-/* Medium screens (tablets, etc.) */
+/* Tablet screens */
 @media (max-width: 992px) {
+  .timeline-wrapper {
+    padding-left: 3rem;
+  }
 
+  .timeline-line {
+    left: 1rem;
+  }
+
+  .timeline-year-dot {
+    left: -2rem;
+    width: 16px;
+    height: 16px;
+  }
+
+  .timeline-year-label {
+    font-size: 2rem;
+  }
 }
 
 /* Small screens (phones) */
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+  .events-page {
+    
+    height: 100vh;
+    overflow: hidden;
+  }
 
-      .slide-img{
-            width: 100vw; /* 25% of viewport on tablets/desktops */
-        }
+  .mobile-events-timeline {
+    height: 100vh;
+    padding: 0.75rem;
+  }
 
-        .event-fix-on-phone {
-            position: fixed;
-            top:0;
-            left:0;
-        }
-        .event-timeline-entity-title{
-            font-size: 2rem;
-            line-height: 90%;
-        }
+  .timeline-wrapper {
+    padding-left: 2.5rem;
+  }
 
-        .event-image{ 
-            max-width: "100%";
-            height: "auto";
-            opacity: 80%;
-        }
+  .timeline-line {
+    left: 0.75rem;
+    width: 2px;
+  }
 
+  .timeline-year-marker {
+    padding-left: 0.5rem;
+  }
+
+  .timeline-year-dot {
+    left: -1.75rem;
+    width: 14px;
+    height: 14px;
+    border-width: 3px;
+  }
+
+  .timeline-year-label {
+    font-size: 1.75rem;
+  }
+
+  .event-timeline-entity {
+    padding-left: 0.5rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .event-timeline-date-marker {
+    min-width: 60px;
+  }
+
+  .event-date-dot {
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+  }
+
+  .event-date-label {
+    font-size: 0.8rem;
+  }
+
+  .event-timeline-entity-title {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+    line-height: 95%;
+  }
 
 }
 
-/* in Eventpage.css */
-.events-page { height: 100vh; overflow: hidden; } /* outer wrapper */
+/* Base Layout */
+.events-page {
+  height: 100vh;
+  overflow: hidden;
+}
 
 .events-list-container {
+  height: 100vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
 
-    height: 100vh;        /* full height */
-    overflow-y: auto;     /* inner scrolling area (use this if you want a scrollable column) */
-    padding-right: 1rem;
+/* Remove old event-dot if it exists */
+.event-dot {
+  display: none;
 }
 
 /* other styles */
@@ -137,11 +279,78 @@
 }
 
 .sticky-col {
-    position: fixed;
-    top: 25%;
-    left:0;
-    height: 100vh;
-    padding: 2rem;
-    text-align: left;
+  position: sticky;
+  top: 10vh;
+  height: fit-content;
+  padding: 2rem;
+  text-align: left;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Mobile Layout - Timeline only */
+.mobile-events-layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mobile-events-timeline {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem;
+  position: relative;
+  will-change: scroll-position;
+}
+
+.event-current-image-mobile {
+  width: 100%;
+  height: 70%;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border: 3px solid #0057b8;
+  background: #000;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.event-current-image-mobile > div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.event-current-image-mobile .slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure ImageCarousel container is properly sized on mobile */
+.event-current-image-mobile > div > div {
+  width: 100%;
+  height: 100%;
+}
+
+.event-current-year-mobile {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 0.5rem 0;
+  flex-shrink: 0;
+}
+
+.event-current-md-mobile {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffd700;
+  margin-right: 0.25rem;
 }
 

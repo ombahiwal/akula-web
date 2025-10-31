@@ -43,18 +43,23 @@ const EventsPage = () => {
   getContent("info_section").then((data_resp) => {
     
     // Ensure data_resp.items exists and is an array
-    const fetchedEvents = data_resp['eventsTimeline'].map((item) => ({
-          dt:parseDateTime(item.fields?.eventDate),
-          year: item.fields?.eventDate || "",
+    const fetchedEvents = data_resp['eventsTimeline'].map((item) => {
+      const dt = parseDateTime(item.fields?.eventDate);
+      return {
+          dt: dt,
+          year: dt.year || "",
+          month: dt.month || "",
+          day: dt.day || "",
           title: item.fields?.eventTitle || "",
           id: item.id || "",
           image: item.fields?.images || "https://placehold.co/400x300?text=no-image",
-        }));
+        };
+    });
 
     setEvents(fetchedEvents);
 
     if (fetchedEvents.length > 0) {
-      setCurrentYear(fetchedEvents[0].dt.year);
+      setCurrentYear(fetchedEvents[0].year);
       setCurrentMD(fetchedEvents[0].dt.md);
       setCurrentImage(fetchedEvents[0].image);
     }
@@ -66,119 +71,291 @@ const EventsPage = () => {
 
   // Initialize GSAP ScrollTriggers **after events are loaded**
   useEffect(() => {
-    if (!events.length) return;
+    if (!events.length || !containerRef.current) return;
 
-    ScrollTrigger.getAll().forEach((t) => t.kill());
+    // Small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
 
-    const highlightItem = (index) => {
-      itemsRef.current.forEach((item, i) => {
-        if (!item) return;
-        const titleEl = item.querySelector(".event-timeline-entity-title") || item;
-        gsap.to(titleEl, {
-          color: i === index ? "#ffd700" : "#0057b8",
-          scale: i === index ? 1.02 : 1,
-          transformOrigin: "left center",
-          duration: 0.25,
-          overwrite: true,
+      const highlightItemInTrigger = (index) => {
+        itemsRef.current.forEach((item, i) => {
+          if (!item) return;
+          const titleEl = item.querySelector(".event-timeline-entity-title") || item;
+          gsap.to(titleEl, {
+            color: i === index ? "#ffd700" : "#0057b8",
+            scale: i === index ? 1.02 : 1,
+            transformOrigin: "left center",
+            duration: 0.25,
+            overwrite: true,
+          });
+        });
+      };
+
+      // Determine if mobile or desktop based on container class
+      const isMobile = containerRef.current.classList.contains('mobile-events-timeline');
+      const scroller = isMobile ? containerRef.current : (containerRef.current || window);
+
+      const updateCurrentEvent = (index) => {
+        if (index >= 0 && index < events.length) {
+          setCurrentYear(events[index].year);
+          setCurrentMD(events[index].dt.md);
+          setCurrentImage(events[index].image);
+          highlightItemInTrigger(index);
+        }
+      };
+
+      // Create ScrollTriggers
+      const triggers = itemsRef.current.map((el, i) => {
+        if (!el) return null;
+        return ScrollTrigger.create({
+          trigger: el,
+          scroller: scroller,
+          start: isMobile ? "top 70%" : "top center",
+          end: isMobile ? "bottom 30%" : "bottom center",
+          onEnter: () => updateCurrentEvent(i),
+          onEnterBack: () => updateCurrentEvent(i),
         });
       });
-    };
 
-    const triggers = itemsRef.current.map((el, i) => {
-      if (!el) return null;
-      return ScrollTrigger.create({
-        trigger: el,
-        scroller: containerRef.current || undefined,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => {
-          setCurrentYear(events[i].dt.year);
-          setCurrentMD(events[i].dt.md);
-          setCurrentImage(events[i].image);
-          highlightItem(i);
-        },
-        onEnterBack: () => {
-          setCurrentYear(events[i].dt.year);
-          setCurrentMD(events[0].dt.md);
-          setCurrentImage(events[i].image);
-          highlightItem(i);
-        },
-      });
-    });
+      // Manual scroll listener for mobile (fallback if ScrollTrigger doesn't work well)
+      let scrollTimeout;
+      let scrollCleanup = null;
 
-    ScrollTrigger.refresh();
-    highlightItem(0);
+      if (isMobile && scroller) {
+        const handleScroll = () => {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            const scrollTop = scroller.scrollTop;
+            const containerHeight = scroller.clientHeight;
+            const viewportCenter = scrollTop + (containerHeight * 0.5);
+
+            // Find which event is closest to the center of viewport
+            let closestIndex = 0;
+            let closestDistance = Infinity;
+
+            itemsRef.current.forEach((item, i) => {
+              if (!item) return;
+              const itemTop = item.offsetTop;
+              const itemHeight = item.offsetHeight;
+              const itemCenter = itemTop + (itemHeight / 2);
+              const distance = Math.abs(viewportCenter - itemCenter);
+
+              if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = i;
+              }
+            });
+
+            updateCurrentEvent(closestIndex);
+          }, 50);
+        };
+
+        scroller.addEventListener('scroll', handleScroll, { passive: true });
+        
+        scrollCleanup = () => {
+          scroller.removeEventListener('scroll', handleScroll);
+          clearTimeout(scrollTimeout);
+        };
+      }
+
+      ScrollTrigger.refresh();
+      updateCurrentEvent(0);
+
+      // Return cleanup function
+      return () => {
+        if (scrollCleanup) scrollCleanup();
+        triggers.forEach((t) => t && t.kill && t.kill());
+      };
+    }, 200);
 
     return () => {
-      triggers.forEach((t) => t && t.kill && t.kill());
+      clearTimeout(timeoutId);
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, [events]); // run effect whenever events change
+
+  // Refresh ScrollTrigger on window resize to handle mobile/desktop switch
+  useEffect(() => {
+    const handleResize = () => {
+      if (events.length && containerRef.current) {
+        ScrollTrigger.refresh();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [events.length]);
 
   // Scroll to specific event
   const scrollToEvent = (index) => {
     if (!itemsRef.current[index] || !containerRef.current) return;
     const el = itemsRef.current[index];
-    const top = el.offsetTop - window.innerHeight / 2;
+    const isMobile = containerRef.current.classList.contains('mobile-events-timeline');
+    
+    if (isMobile) {
+      // For mobile, scroll within the timeline container
+      const container = containerRef.current;
+      const containerTop = container.scrollTop;
+      const elementTop = el.offsetTop;
+      const targetScroll = containerTop + elementTop - (container.clientHeight * 0.3);
 
-    gsap.to(containerRef.current, {
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTo: { y: top, autoKill: true },
-      onComplete: () => {
-        setCurrentYear(events[index].dt.year);
-        setCurrentMD(events[index].dt.md);
-        setCurrentImage(events[index].image);
+      gsap.to(container, {
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTo: { y: targetScroll, autoKill: true },
+        onComplete: () => {
+          setCurrentYear(events[index].year);
+          setCurrentMD(events[index].dt.md);
+          setCurrentImage(events[index].image);
+          highlightItem(index);
+        },
+      });
+    } else {
+      // For desktop
+      const top = el.offsetTop - window.innerHeight / 2;
 
-        // highlight clicked item
-        itemsRef.current.forEach((item, i) => {
-          const titleEl = item.querySelector(".event-timeline-entity-title");
-          gsap.to(titleEl, {
-            color: i === index ? "#ffd700" : "#888888",
-            scale: i === index ? 1.02 : 1,
-            duration: 0.25,
-          });
+      gsap.to(containerRef.current, {
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTo: { y: top, autoKill: true },
+        onComplete: () => {
+          setCurrentYear(events[index].year);
+          setCurrentMD(events[index].dt.md);
+          setCurrentImage(events[index].image);
+          highlightItem(index);
+        },
+      });
+    }
+  };
+
+  const highlightItem = (index) => {
+    itemsRef.current.forEach((item, i) => {
+      if (!item) return;
+      const titleEl = item.querySelector(".event-timeline-entity-title");
+      if (titleEl) {
+        gsap.to(titleEl, {
+          color: i === index ? "#ffd700" : "#0057b8",
+          scale: i === index ? 1.02 : 1,
+          duration: 0.25,
         });
-      },
+      }
     });
   };
 
+  // Group events by year for timeline
+  const eventsByYear = events.reduce((acc, event) => {
+    const year = event.year;
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(event);
+    return acc;
+  }, {});
+
+  const years = Object.keys(eventsByYear).sort((a, b) => b.localeCompare(a)); // Sort years descending
+
   return (
     <div className="events-page bg-black text-white">
-      <Container fluid className="h-100 py-5">
+      {/* Mobile Layout - Timeline only */}
+      <div className="d-lg-none mobile-events-layout">
+        {/* Scrollable Timeline Section */}
+        <div ref={containerRef} className="mobile-events-timeline">
+          <div className="timeline-wrapper">
+            <div className="timeline-line"></div>
+            <div style={{ height: "20vh" }} />
+            {years.map((year, yearIdx) => (
+              <div key={year} className="timeline-year-group">
+                {/* Year Marker */}
+                <div className="timeline-year-marker">
+                  <div className="timeline-year-dot"></div>
+                  <div className="timeline-year-label">{year}</div>
+                </div>
+                
+                {/* Events for this year */}
+                {eventsByYear[year].map((event, eventIdx) => {
+                  const globalIdx = events.findIndex(e => e.id === event.id);
+                  return (
+                    <div
+                      key={event.id}
+                      ref={(el) => setItemRef(el, globalIdx)}
+                      className="event-timeline-entity"
+                      onClick={() => scrollToEvent(globalIdx)}
+                    >
+                      <div className="event-timeline-date-marker">
+                        <div className="event-date-dot"></div>
+                        <div className="event-date-label">{event.dt.md}</div>
+                      </div>
+                      <div className="event-content">
+                        <Link to={"/events/"+event.id}>
+                          <div className="event-timeline-entity-title">{event.title}</div>
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+            <div style={{ height: "20vh" }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout - Side by side */}
+      <Container fluid className="h-100 py-5 d-none d-lg-block">
         <Row ref={containerRef} className="events-list-container">
-          {/* Left sticky column */}
-          <Col sm={1} md={6} lg={4}>
-            <div className="sticky-col event-fixed text-center">
-              
-              <div className="event-current-year"><small className="event-current-md">{currentMD}</small>.{currentYear}</div>
-              
+          {/* Left sticky column - Desktop */}
+          <Col xs={12} md={12} lg={4}>
+            <div className="sticky-col event-fixed">
+              <div className="event-current-year">
+                <small className="event-current-md">{currentMD}</small>.{currentYear}
+              </div>
               <div className="event-current-image">
                 {currentImage && (
-                  <ImageCarousel images={[currentImage[0]]} interval={3000}/>
+                  <ImageCarousel images={Array.isArray(currentImage) ? [currentImage[0]] : [currentImage]} interval={3000}/>
                 )}
               </div>
             </div>
           </Col>
 
-          {/* Right: scrollable list */}
-          <Col sm={11} md={6} lg={8}>
-            <div style={{ height: "50vh" }} />
-            {events.map((event, idx) => (
-              <div
-                key={idx}
-                ref={(el) => setItemRef(el, idx)}
-                className="event-timeline-entity py-3"
-                onClick={() => scrollToEvent(idx)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="event-content">
-                  <Link to={"/events/"+event.id}><div className="event-timeline-entity-title">{event.title}</div></Link>
+          {/* Right: scrollable timeline list */}
+          <Col xs={12} lg={8}>
+            <div className="timeline-wrapper">
+              <div className="timeline-line"></div>
+              <div style={{ height: "50vh" }} />
+              {years.map((year, yearIdx) => (
+                <div key={year} className="timeline-year-group">
+                  {/* Year Marker */}
+                  <div className="timeline-year-marker">
+                    <div className="timeline-year-dot"></div>
+                    <div className="timeline-year-label">{year}</div>
+                  </div>
+                  
+                  {/* Events for this year */}
+                  {eventsByYear[year].map((event, eventIdx) => {
+                    const globalIdx = events.findIndex(e => e.id === event.id);
+                    return (
+                      <div
+                        key={event.id}
+                        ref={(el) => setItemRef(el, globalIdx)}
+                        className="event-timeline-entity"
+                        onClick={() => scrollToEvent(globalIdx)}
+                      >
+                        <div className="event-timeline-date-marker">
+                          <div className="event-date-dot"></div>
+                          <div className="event-date-label">{event.dt.md}</div>
+                        </div>
+                        <div className="event-content">
+                          <Link to={"/events/"+event.id}>
+                            <div className="event-timeline-entity-title">{event.title}</div>
+                          </Link>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="event-dot" />
-              </div>
-            ))}
-            <div style={{ height: "50vh" }} />
+              ))}
+              <div style={{ height: "50vh" }} />
+            </div>
           </Col>
         </Row>
       </Container>

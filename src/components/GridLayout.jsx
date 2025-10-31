@@ -6,6 +6,7 @@ import FlagToText from "./FlagToText";
 import {Link} from 'react-router-dom'
 import HomeTile from "./HomeTile";
 import { getContent } from "../api/cfclient";
+import "../styles/homepage.css";
 
 const GridLayout = () => {
 
@@ -39,8 +40,8 @@ const GridLayout = () => {
 
   return (
     <div className="d-flex overflow-hidden bg-black">
-      <div className="flex-grow-1 p-2 overflow-auto d-flex ">
-        <Container>
+      <div className="flex-grow-1 overflow-auto d-flex">
+        <Container className="homepage-container">
           <Row className="g-2 justify-content-center">
             <Col xs={12}>
                 <Row className="g-2">
@@ -208,7 +209,7 @@ const GridLayout = () => {
                                     }
                                     backContent={
                                       <div className="event-tile text-black event-tile-desc" >
-                                              <Markdown>{event_post.fields.eventDescEn}</Markdown>
+                                              <span className="text-back-small"><Markdown>{event_post.fields.eventDescEn}</Markdown></span>
                                       </div>
                                     }
                                     direction="y"
@@ -252,7 +253,7 @@ const GridLayout = () => {
                                         backContent={
                                            <div className="event-tile text-black" >
                                             <span className="text-secondary">{blog_post.fields.authors}</span>
-                                            <Markdown>{blog_post.fields.shortDescription}</Markdown>
+                                            <span className="text-back-small"><Markdown>{blog_post.fields.shortDescription}</Markdown></span>
                                           </div>
                                         }
                                         direction="x"
@@ -267,20 +268,13 @@ const GridLayout = () => {
 
             {/* About Association */}
             <Col xs={12} md={6}>
-                <div className=" bg-white text-white d-flex align-items-left justify-content-left" style={{ aspectRatio: "1/1" }}>
-                    <div className="about-tile align-items-left">
-                        <div className="about-title">
-                            About 
-                        </div>
-                        <div className="about-image">
-                            
-                        </div>
-                        <Container className="about-body kyivserif" fluid >
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-                        </Container>
-
+                <div className="about-tile bg-white text-black d-flex flex-column" style={{ aspectRatio: "1/1" }}>
+                    <div className="about-title">
+                        About 
+                    </div>
+                    <div className="about-body kyivserif">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                     </div>
                 </div>
             </Col>
@@ -350,7 +344,7 @@ const GridLayout = () => {
                                         backContent={
                                            <div className="event-tile text-black" >
                                             <span className="text-secondary">{blog_post.fields.authors}</span>
-                                            <Markdown>{blog_post.fields.shortDescription}</Markdown>
+                                            <span className="text-back-small"><Markdown>{blog_post.fields.shortDescription}</Markdown></span>
                                           </div>
                                         }
                                         direction="x"
@@ -362,10 +356,9 @@ const GridLayout = () => {
                   })}
                 
                 <Col xs={6}>
-                <a href="mailto:test@akula.com">
-                   <div className="nav-tile nav-tile-highlighted  square position-relative">
+                <a href="mailto:pryvit@akula.com" style={{ textDecoration: 'none' }}>
+                   <div className="nav-tile nav-tile-highlighted square position-relative">
                         <span className="top-left">Get in touch</span>
-                        {/* <div class="nav-tile-body">Interested in joining us?</div> */}
                         <div className="bottom-right">
                             <span className="small-text-credit">pryvit@akula.com</span>
                         </div>

@@ -88,32 +88,54 @@ const BlogPost = () => {
     );
   }
 
-  const { postTitle, postDateTime, authors, blogBody } = blogPost.fields;
+  const { postTitle, postDateTime, authors, blogBody, thumbnail } = blogPost.fields;
 
   return (
-    <div className="d-flex overflow-hidden">
-      <div className="flex-grow-1 p-2 overflow-auto d-flex  bg-white">
-        <Container fluid>
-          <Row className="g-2">
-              <Col xs={12} className="align-content-center">
-              <div className="post-heading">
+    <div className="d-flex overflow-hidden bg-black">
+      <div className="flex-grow-1 overflow-auto bg-white">
+        {/* Back Button */}
+        <Container className="pt-4 pb-2">
+          <Link to="/blog" className="back-link">
+            ← Back to Blog
+          </Link>
+        </Container>
+
+        {/* Hero Image */}
+        {thumbnail && (
+          <div className="blog-hero-image">
+            <Image src={thumbnail} fluid className="w-100" />
+          </div>
+        )}
+
+        <Container>
+          <Row className="justify-content-center">
+            {/* Main Content */}
+            <Col xs={12} lg={8} xl={7}>
+              {/* Post Header */}
+              <div className="post-header">
                 <h1 className="post-title">{postTitle}</h1>
-                <h6 className="text-secondary d-block mb-3">{authors}</h6>
-                <h6 className="text-secondary d-block mb-3">{parseDateTime(postDateTime).date}</h6>
+                <div className="post-meta">
+                  <span className="post-author">{authors}</span>
+                  <span className="post-separator">•</span>
+                  <span className="post-date">{parseDateTime(postDateTime).date}</span>
+                </div>
               </div>
+
+              {/* Blog Body */}
               <div className="blog-body">
-              {documentToReactComponents(blogBody, options)}
+                {documentToReactComponents(blogBody, options)}
+              </div>
+
+              {/* Footer */}
+              <div className="post-footer">
+                <Link to="/blog" className="back-link-footer">
+                  ← Back to Blog
+                </Link>
               </div>
             </Col>
-             <Col>
-              <div className="blog-card-heading">
-                  AKULA Blog
-                      {/* <h2 className="mb-3"></h2> */}
-                  </div>
-            </Col>
-            </Row>
-      </Container>
-    </div>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 };

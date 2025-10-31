@@ -83,7 +83,7 @@ const EventPost = () => {
     return (
       <Container className="text-center mt-5">
         <h2>Event not found</h2>
-        <Link to="/Event">
+        <Link to="/events">
           <Button variant="warning" className="mt-3">
             Back to Events
           </Button>
@@ -95,37 +95,57 @@ const EventPost = () => {
   const { eventDate, eventDescEn, eventTitle, eventArticle, images } = eventPost.fields;
 
   return (
-    <div className="d-flex overflow-hidden">
-      <div className="flex-grow-1 p-2 overflow-auto d-flex  bg-white">
-        <Container fluid>
-            <Row className="g-2 event-gallery">
-                {images.map((imgs, idx)=>{
-                    return(
-                      <Col key={idx} xs={12} sm={6} md={4} lg={4}>
-                        <Image src={imgs} fluid/>
-                    </Col>)
-                })}
+    <div className="d-flex overflow-hidden bg-black">
+      <div className="flex-grow-1 overflow-auto bg-white">
+        {/* Back Button */}
+        <Container className="pt-4 pb-2">
+          <Link to="/events" className="back-link">
+            ← Back to Events
+          </Link>
+        </Container>
+
+        {/* Image Gallery Wall */}
+        {images && images.length > 0 && (
+          <Container fluid className="px-0">
+            <Row className="g-2 event-gallery-wall">
+              {images.map((img, idx) => (
+                <Col key={idx} xs={12} sm={6} md={4} lg={3}>
+                  <div className="event-gallery-image-wrapper">
+                    <Image src={img} className="event-gallery-wall-image" fluid />
+                  </div>
+                </Col>
+              ))}
             </Row>
-          <Row className="g-2">
-                
-              <Col xs={12} className="align-content-center">
-              <div className="post-heading">
+          </Container>
+        )}
+
+        <Container>
+          <Row className="justify-content-center">
+            {/* Main Content */}
+            <Col xs={12} lg={8} xl={7}>
+              {/* Event Header */}
+              <div className="post-header">
                 <h1 className="post-title">{eventTitle}</h1>
-                <h6 className="text-secondary d-block mb-3">{parseDateTime(eventDate).date}</h6>
+                <div className="post-meta">
+                  <span className="post-date">{parseDateTime(eventDate).date}</span>
+                </div>
               </div>
+
+              {/* Event Body */}
               <div className="event-body">
                 {eventArticle ? documentToReactComponents(eventArticle, options) : <Markdown>{eventDescEn}</Markdown>}
               </div>
+
+              {/* Footer */}
+              <div className="post-footer">
+                <Link to="/events" className="back-link-footer">
+                  ← Back to Events
+                </Link>
+              </div>
             </Col>
-             <Col>
-              <div className="event-card-heading">
-                  AKULA Events
-                      {/* <h2 className="mb-3"></h2> */}
-                  </div>
-            </Col>
-            </Row>
-      </Container>
-    </div>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 };

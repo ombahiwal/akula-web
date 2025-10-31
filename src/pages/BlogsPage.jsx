@@ -41,70 +41,72 @@ const BlogsPage = () => {
       }, []);
 
   return (
-    <div className="d-flex overflow-hidden bg-black min-vh-100 text-white">
-      <div className="bg-white flex-grow-1 p-3 overflow-auto d-flex flex-column">
-        {blogPosts && <Container>
-          {/* Search Bar */}
-          <Row className="mb-4 justify-content-center">
-            <Col> 
-            <div className="blog-card-heading">
-                AKULA Blog
-                    {/* <h2 className="mb-3"></h2> */}
-                </div></Col>
-            <Col xs={12} md={6}>
-              <Form.Control
-                type="text"
-                placeholder="Search blog posts..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="px-3 search-bar"
-              />
-            </Col>
-          </Row>
-
-          {/* Blog Grid */}
-          <Row className="g-3 justify-content-center">
-            <Col>
-            {filteredPosts.length > 0 ? (
-              filteredPosts.map((post) => (
-                <Row key={post.id} className="m-2 justify-content-center">
-                <Col
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  lg={3}
-                  className="tile-col"
-                >   
-                    <div className="p-3 h-100 bg-white d-flex flex-column justify-content-between  ">
-                        <Image src={post.fields.thumbnail} fluid/>
-                    </div>
-                </Col>
-                <Col
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  lg={6}
-                  className="tile-col"
-                >
-                  <div className="p-3 h-100 bg-white d-flex flex-column justify-content-between  blog-post-tile">
-                    <div> 
-                        <h3 className="mb-2"><Link className="blog-link-title" to={"/blog/"+post.id}>{post.fields.postTitle}</Link></h3>
-                        <small className="authors">{post.fields.authors}</small> <br/>
-                        <small>{post.fields.shortDescription}</small>
-                    </div>
-                    <small className="text-secondary">{parseDateTime(post.fields.postDateTime).date}</small>
-                  </div>
-                </Col>
-                </Row>
-              ))
-            ) : (
-              <Col xs={12} className="text-center text-muted">
-                No blog posts found.
+    <div className="d-flex overflow-hidden bg-black min-vh-100">
+      <div className="bg-white flex-grow-1 overflow-auto">
+        <Container fluid className="px-md-5">
+          {/* Header Section */}
+          <div className="blogs-header">
+            <Row className="align-items-center">
+              <Col xs={12} md={8}>
+                <h1 className="blogs-page-title">AKULA Blog</h1>
+                <p className="blogs-page-subtitle">
+                  Stories, insights, and updates from the Ukrainian student community at EPFL
+                </p>
               </Col>
-            )}
-            </Col>
-          </Row>
-        </Container>}
+              <Col xs={12} md={4}>
+                <Form.Control
+                  type="text"
+                  placeholder="Search blog posts..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="search-bar"
+                />
+              </Col>
+            </Row>
+          </div>
+
+          {/* Blog Posts Grid */}
+          {blogPosts && (
+            <>
+              {filteredPosts.length > 0 ? (
+                <Row className="g-4 mb-5">
+                  {filteredPosts.map((post) => (
+                    <Col key={post.id} xs={12} md={6} lg={4}>
+                      <Link to={"/blog/"+post.id} className="blog-card-link">
+                        <div className="blog-card">
+                          <div className="blog-card-image-wrapper">
+                            <Image 
+                              src={post.fields.thumbnail} 
+                              className="blog-card-image"
+                              fluid
+                            />
+                            <div className="blog-card-overlay"></div>
+                          </div>
+                          <div className="blog-card-content">
+                            <div className="blog-card-meta">
+                              <span className="blog-card-author">{post.fields.authors}</span>
+                              <span className="blog-card-separator">•</span>
+                              <span className="blog-card-date">{parseDateTime(post.fields.postDateTime).date}</span>
+                            </div>
+                            <h3 className="blog-card-title">{post.fields.postTitle}</h3>
+                            {post.fields.shortDescription && (
+                              <p className="blog-card-description">{post.fields.shortDescription}</p>
+                            )}
+                          </div>
+                        </div>
+                      </Link>
+                    </Col>
+                  ))}
+                </Row>
+              ) : (
+                <div className="blogs-empty-state">
+                  <p className="blogs-empty-text">No blog posts found.</p>
+                  <p className="blogs-empty-subtext">Try adjusting your search terms.</p>
+                </div>
+              )}
+            </>
+          )}
+        </Container>
       </div>
     </div>
   );

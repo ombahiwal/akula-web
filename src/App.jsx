@@ -7,19 +7,24 @@ import TeamPage from './pages/TeamPage.jsx'
 import BlogsPage from './pages/BlogsPage.jsx'
 import BlogPost from './pages/BlogPost.jsx'
 import EventPost from './pages/EventPost.jsx'
+import LanguageSwitcher from './components/LanguageSwitcher.jsx'
+
 function App() {
 
 
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/events" element={<EventsPage/>} />
-      <Route path="/events/:id" element={<EventPost/>} />
-      <Route path="/board" element={<TeamPage/>} />
-      <Route path="/blog" element={<BlogsPage/>} />
-      <Route path="/blog/:id" element={<BlogPost/>} />
-      {/* add more routes here later */}
-    </Routes>
+    <>
+      <LanguageSwitcher />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/events" element={<EventsPage/>} />
+        <Route path="/events/:id" element={<EventPost/>} />
+        <Route path="/board" element={<TeamPage/>} />
+        <Route path="/blog" element={<BlogsPage/>} />
+        <Route path="/blog/:id" element={<BlogPost/>} />
+        {/* add more routes here later */}
+      </Routes>
+    </>
   )
 }
 

@@ -4,6 +4,7 @@ import { getContent } from "../api/cfclient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/blogspage.css";
 import {Link} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
  function parseDateTime(isoString) {
     if(!isoString)
@@ -22,6 +23,7 @@ import {Link} from 'react-router-dom';
     }
 
 const BlogsPage = () => {
+  const { t } = useTranslation();
   const [blogPosts, setPosts] = useState([]);
 
   const [search, setSearch] = useState("");
@@ -48,15 +50,15 @@ const BlogsPage = () => {
           <div className="blogs-header">
             <Row className="align-items-center">
               <Col xs={12} md={8}>
-                <h1 className="blogs-page-title">AKULA Blog</h1>
+                <h1 className="blogs-page-title">{t('blog.title')}</h1>
                 <p className="blogs-page-subtitle">
-                  Stories, insights, and updates from the Ukrainian student community at EPFL
+                  {t('blog.subtitle')}
                 </p>
               </Col>
               <Col xs={12} md={4}>
                 <Form.Control
                   type="text"
-                  placeholder="Search blog posts..."
+                  placeholder={t('blog.searchPlaceholder')}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="search-bar"
@@ -100,8 +102,8 @@ const BlogsPage = () => {
                 </Row>
               ) : (
                 <div className="blogs-empty-state">
-                  <p className="blogs-empty-text">No blog posts found.</p>
-                  <p className="blogs-empty-subtext">Try adjusting your search terms.</p>
+                  <p className="blogs-empty-text">{t('blog.noResults')}</p>
+                  <p className="blogs-empty-subtext">{t('blog.noResultsSubtext')}</p>
                 </div>
               )}
             </>

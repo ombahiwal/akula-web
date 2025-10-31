@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "latestEvents": "Derniers événements",
+    "blogPosts": "Articles de blog",
+    "board": "Le conseil AKULA",
+    "boardLine1": "Le",
+    "boardLine2": "conseil",
+    "boardLine3": "AKULA",
+    "getInTouch": "Contactez-nous"
+  },
+  "home": {
+    "about": "À propos",
+    "aboutText": "AKULA est un espace de rencontre, d'échange culturel, d'éducation et de divertissement pour les étudiants ukrainiens de l'EPFL, et tous les amis de l'Ukraine. Notre mission est de promouvoir la culture ukrainienne à l'EPFL, en Suisse et dans le monde. L'association organise et participe à des événements culturels, récréatifs, intellectuels et sportifs."
+  },
+  "blog": {
+    "title": "Blog AKULA",
+    "subtitle": "Découvrez des histoires, des réflexions et des mises à jour de notre communauté",
+    "searchPlaceholder": "Rechercher des articles...",
+    "noResults": "Aucun article trouvé",
+    "noResultsSubtext": "Essayez d'ajuster vos termes de recherche",
+    "backToBlog": "← Retour au blog"
+  },
+  "events": {
+    "title": "Événements AKULA",
+    "subtitle": "Explorez nos événements à venir et passés",
+    "backToEvents": "← Retour aux événements",
+    "pastMembers": "Anciens membres"
+  },
+  "team": {
+    "title": "Le conseil AKULA",
+    "subtitle": "Rencontrez les membres actuels qui dirigent notre communauté",
+    "pastMembersTitle": "Anciens membres",
+    "pastMembersSubtitle": "Anciens membres du conseil qui ont contribué à AKULA",
+    "noMembers": "Aucun membre du conseil actuellement disponible."
+  },
+  "common": {
+    "loading": "Chargement...",
+    "notFound": "Non trouvé",
+    "error": "Une erreur s'est produite"
+  }
+}
+

@@ -5,10 +5,12 @@ import { getContent } from "../api/cfclient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import { useTranslation } from 'react-i18next';
 import '../styles/eventpost.css';
 import ImageCarousel from "../components/ImageCarousel";
 import Markdown from "react-markdown";
 const EventPost = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [eventPost, setEventPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -100,7 +102,7 @@ const EventPost = () => {
         {/* Back Button */}
         <Container className="pt-4 pb-2">
           <Link to="/events" className="back-link">
-            ← Back to Events
+            {t('events.backToEvents')}
           </Link>
         </Container>
 
@@ -139,7 +141,7 @@ const EventPost = () => {
               {/* Footer */}
               <div className="post-footer">
                 <Link to="/events" className="back-link-footer">
-                  ← Back to Events
+                  {t('events.backToEvents')}
                 </Link>
               </div>
             </Col>

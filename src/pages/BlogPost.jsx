@@ -5,8 +5,10 @@ import { getContent } from "../api/cfclient";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import { useTranslation } from 'react-i18next';
 import '../styles/blogpost.css';
 const BlogPost = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [blogPost, setBlogPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -96,7 +98,7 @@ const BlogPost = () => {
         {/* Back Button */}
         <Container className="pt-4 pb-2">
           <Link to="/blog" className="back-link">
-            ← Back to Blog
+            {t('blog.backToBlog')}
           </Link>
         </Container>
 
@@ -129,7 +131,7 @@ const BlogPost = () => {
               {/* Footer */}
               <div className="post-footer">
                 <Link to="/blog" className="back-link-footer">
-                  ← Back to Blog
+                  {t('blog.backToBlog')}
                 </Link>
               </div>
             </Col>

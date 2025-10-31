@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "latestEvents": "Latest Events",
+    "blogPosts": "Blog posts",
+    "board": "The AKULA Board",
+    "boardLine1": "The",
+    "boardLine2": "AKULA",
+    "boardLine3": "Board",
+    "getInTouch": "Get in touch"
+  },
+  "home": {
+    "about": "About",
+    "aboutText": "AKULA is a space for meeting, cultural exchange, education, and entertainment of Ukrainian students at EPFL, and all friends of Ukraine. Our mission is to promote Ukrainian culture at EPFL, in Switzerland, and the world. The association organizes and participates in cultural, recreational, intellectual, and sports events."
+  },
+  "blog": {
+    "title": "AKULA Blog",
+    "subtitle": "Discover stories, insights, and updates from our community",
+    "searchPlaceholder": "Search blog posts...",
+    "noResults": "No posts found",
+    "noResultsSubtext": "Try adjusting your search terms",
+    "backToBlog": "← Back to Blog"
+  },
+  "events": {
+    "title": "AKULA Events",
+    "subtitle": "Explore our upcoming and past events",
+    "backToEvents": "← Back to Events",
+    "pastMembers": "Past Members"
+  },
+  "team": {
+    "title": "The AKULA Board",
+    "subtitle": "Meet the current members leading our community",
+    "pastMembersTitle": "Past Members",
+    "pastMembersSubtitle": "Former board members who contributed to AKULA",
+    "noMembers": "No current board members available."
+  },
+  "common": {
+    "loading": "Loading...",
+    "notFound": "Not found",
+    "error": "An error occurred"
+  }
+}
+

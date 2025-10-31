@@ -1,14 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './LanguageSwitcher.css';
+import '../styles/LanguageSwitcher.css';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
   const languages = [
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'uk', name: 'Українська', flag: '🇺🇦' },
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
+    { code: 'en', name: 'EN', flag: '🌏' },
+    { code: 'uk', name: 'Ук', flag: '🇺🇦' },
+    { code: 'fr', name: 'FR', flag: '🇨🇭' },
   ];
 
   const changeLanguage = (lng) => {

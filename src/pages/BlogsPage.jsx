@@ -33,8 +33,15 @@ const BlogsPage = () => {
 
      useEffect(() => {
         getContent("info_section").then((data_resp)  => {
+                // Sort blogPosts by date (descending - newest first)
+                const sortedBlogPosts = (data_resp['blogPosts'] || []).sort((a, b) => {
+                  const dateA = a.fields?.postDateTime || "";
+                  const dateB = b.fields?.postDateTime || "";
+                  if (!dateA || !dateB) return 0;
+                  return new Date(dateB) - new Date(dateA);
+                });
 
-                setPosts(data_resp['blogPosts']);
+                setPosts(sortedBlogPosts);
                 window.scrollTo({
                   top: 0,
                   behavior: "smooth", // or "auto"

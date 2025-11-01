@@ -19,8 +19,31 @@ const GridLayout = () => {
     const [homeTiles, setHomeTiles] = useState([]);
      useEffect(() => {
         getContent("info_section").then((data_resp)  => {
-                setData(data_resp);
-                setHighlights(data_resp['blogPosts'].filter((post) => post.fields.highlight));
+                // Sort eventsTimeline by date (descending - newest first)
+                const sortedEvents = (data_resp['eventsTimeline'] || []).sort((a, b) => {
+                  const dateA = a.fields?.eventDate || "";
+                  const dateB = b.fields?.eventDate || "";
+                  if (!dateA || !dateB) return 0;
+                  return new Date(dateB) - new Date(dateA);
+                });
+
+                // Sort blogPosts by date (descending - newest first)
+                const sortedBlogPosts = (data_resp['blogPosts'] || []).sort((a, b) => {
+                  const dateA = a.fields?.postDateTime || "";
+                  const dateB = b.fields?.postDateTime || "";
+                  if (!dateA || !dateB) return 0;
+                  return new Date(dateB) - new Date(dateA);
+                });
+
+                // Update data_resp with sorted arrays
+                const updatedData = {
+                  ...data_resp,
+                  eventsTimeline: sortedEvents,
+                  blogPosts: sortedBlogPosts
+                };
+
+                setData(updatedData);
+                setHighlights(sortedBlogPosts.filter((post) => post.fields.highlight));
                 // Get homeTiles and sort by tilePosition
                 const tiles = data_resp['homeTiles'] || [];
                 const sortedTiles = tiles.sort((a, b) => {

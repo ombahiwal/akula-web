@@ -53,7 +53,14 @@ const EventsPage = () => {
           title: item.fields?.eventTitle || "",
           id: item.id || "",
           image: item.fields?.images || "https://placehold.co/400x300?text=no-image",
+          dateString: item.fields?.eventDate || "", // Keep original date string for sorting
         };
+    });
+
+    // Sort events by date (descending - newest first)
+    fetchedEvents.sort((a, b) => {
+      if (!a.dateString || !b.dateString) return 0;
+      return new Date(b.dateString) - new Date(a.dateString);
     });
 
     setEvents(fetchedEvents);
@@ -251,6 +258,14 @@ const EventsPage = () => {
     acc[year].push(event);
     return acc;
   }, {});
+
+  // Sort events within each year by date (descending - newest first)
+  Object.keys(eventsByYear).forEach((year) => {
+    eventsByYear[year].sort((a, b) => {
+      if (!a.dateString || !b.dateString) return 0;
+      return new Date(b.dateString) - new Date(a.dateString);
+    });
+  });
 
   const years = Object.keys(eventsByYear).sort((a, b) => b.localeCompare(a)); // Sort years descending
 

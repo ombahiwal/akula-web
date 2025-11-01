@@ -9,6 +9,7 @@ import { getContent } from "../api/cfclient";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "./LanguageSwitcher";
 import "../styles/homepage.css";
 
 const GridLayout = () => {
@@ -413,6 +414,9 @@ const GridLayout = () => {
                     </div>
                     <div className="about-body kyivserif">
                         {t('home.aboutText')}
+                    </div>
+                    <div className="about-language-switcher">
+                        <LanguageSwitcher />
                     </div>
                 </div>
             </Col>

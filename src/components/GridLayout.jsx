@@ -219,7 +219,7 @@ const GridLayout = () => {
             </Col>
 
             {/* Big square 1 */}
-            <Col xs={12} md={6}>
+            <Col className="g-2" xs={12} md={6}>
                 <div className=" ukr-flag-border bg-white text-black d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
                     <h1>AKULA 
                     </h1>

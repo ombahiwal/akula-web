@@ -101,9 +101,9 @@ const GridLayout = () => {
     <div className="d-flex overflow-hidden bg-black">
       <div className="flex-grow-1 overflow-auto d-flex">
         <Container className="homepage-container">
-          <Row className="g-2 justify-content-center">
+          <Row className="g-1 justify-content-center">
             <Col xs={12}>
-                <Row className="g-2">
+                <Row className="g-1">
                   {homeTiles && homeTiles.slice(0,4).map((tile, index) => {
                     const tileData = tile.fields || {};
                     const tileImage = tileData.tileImages && Array.isArray(tileData.tileImages) && tileData.tileImages.length > 0 ? tileData.tileImages[0] : null;
@@ -228,7 +228,7 @@ const GridLayout = () => {
 
             {/* Big square 2 */}
             <Col xs={12} md={6}>
-              <Row className="g-2">
+              <Row className="g-1">
                 {homeTiles && homeTiles.slice(4, 8).map((tile, index) => {
                   const tileData = tile.fields || {};
                   const tileImage = tileData.tileImages && Array.isArray(tileData.tileImages) && tileData.tileImages.length > 0 ? tileData.tileImages[0] : null;
@@ -343,7 +343,7 @@ const GridLayout = () => {
 
             {/* Big square 3 */}
             <Col xs={12} md={6}>
-              <Row className="g-2">
+              <Row className="g-1">
                 <Col xs={6}>
                 <Link to="/events">
                 <div className="square nav-tile position-relative">
@@ -387,7 +387,7 @@ const GridLayout = () => {
 
             {/* Big square 4 */}
             <Col xs={12} md={6}>
-              <Row className="g-2">
+              <Row className="g-1">
                 <Col xs={6}>
                   <Link to={'/blog'}>
                     <div className="square nav-tile position-relative">
@@ -446,7 +446,7 @@ const GridLayout = () => {
 
             {/* Team Contact */}
             <Col xs={12} md={6}>
-              <Row className="g-2">
+              <Row className="g-1">
                 
                 
                   {highlights && highlights.slice(0,1).map((blog_post)=>{

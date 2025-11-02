@@ -27,11 +27,32 @@
 }
 
 :root {
+  /* Color Variables - Ukrainian Theme */
+  --ukrainian-blue: #0057b8;
+  --ukrainian-yellow: #FFD700;
+  --ukrainian-yellow-lowercase: #ffd700;
+  --dark-grey: #3a3a3a;
+  --dark-grey-text: rgba(40, 40, 40, 0.9);
+  --background-dark: #1a1a1a;
+  --text-light-grey: #666;
+  --text-medium-grey: #888;
+  --text-separator: #ccc;
+  --white: #fff;
+  --black: #000;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: black;
+  background-color: var(--background-dark);
+  /* Ukrainian flag-inspired subtle diagonal stripes */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 87, 184, 0.05) 0px,
+    rgba(0, 87, 184, 0.05) 2px,
+    rgba(255, 215, 0, 0.05) 2px,
+    rgba(255, 215, 0, 0.05) 4px
+  );
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -48,12 +69,50 @@ a:hover {
   color: #535bf2;
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
 body {
   margin: 0;
-  background-color: black;
+  padding: 0;
+  background-color: var(--background-dark);
+  /* Ukrainian flag-inspired subtle diagonal stripes */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 87, 184, 0.05) 0px,
+    rgba(0, 87, 184, 0.05) 2px,
+    rgba(255, 215, 0, 0.05) 2px,
+    rgba(255, 215, 0, 0.05) 4px
+  );
   min-width: 320px;
   min-height: 100vh;
   font-family: "Kyiv Type Sans";
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Override Bootstrap bg-black with Ukrainian flag-inspired diagonal stripes */
+.bg-black {
+  background-color: var(--background-dark) !important;
+  /* Ukrainian flag-inspired subtle diagonal stripes */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 87, 184, 0.05) 0px,
+    rgba(0, 87, 184, 0.05) 2px,
+    rgba(255, 215, 0, 0.05) 2px,
+    rgba(255, 215, 0, 0.05) 4px
+  ) !important;
 }
 
 h1 {
@@ -102,8 +161,8 @@ button:focus-visible {
   font-family: "Kyiv Type Sans";
   font-weight: 900;
   font-size: clamp(1.25rem, 3vw, 2rem);
-  color: #000;
-  background-color: white;
+  color: var(--dark-grey);
+  background-color: var(--white);
   padding: clamp(0.75rem, 2vw, 1rem);
 }
 
@@ -133,7 +192,7 @@ button:focus-visible {
 .nav-tile{
   line-height: 1.4;
   font-size: clamp(1.25rem, 3vw, 2rem);
-  border: 4px solid #000;
+  border: none;
 }
 .nav-tile-body {
   font-family: 'Courier New', Courier, monospace;
@@ -145,9 +204,9 @@ button:focus-visible {
 }
 
 .nav-tile:hover{
-  color: #ffd700;
-  background-color: #0057b8;
-  border: 5px solid #ffd700;
+  color: var(--ukrainian-yellow-lowercase);
+  background-color: var(--ukrainian-blue);
+  border: 5px solid var(--ukrainian-yellow-lowercase);
   transition: 0.1s ease
 }
 
@@ -155,12 +214,12 @@ button:focus-visible {
 /* About tile */
 .about-tile{
   width: 100%;
-  color: #000;
+  color: var(--dark-grey);
   aspect-ratio: 1 / 1; /* keeps perfect square */
   position: relative;
   font-family: "Kyiv Type Sans";
   font-weight: 350;
-  border: 2px solid white;
+  border: 2px solid var(--white);
   font-size: 5vw;
   padding: 1rem;
   text-align: left;
@@ -174,7 +233,7 @@ button:focus-visible {
 }
 .body-desc{
   font-size: 5vw;
-  color:black;
+  color: var(--dark-grey);
 }
 
 .kyivsans{
@@ -216,7 +275,7 @@ button:focus-visible {
   padding: 0;
 }
 .event-tile-desc{
-  color: #000;
+  color: var(--dark-grey);
   font-size: clamp(0.75rem, 1.5vw, 0.9rem);
 }
 .event-tile-content{

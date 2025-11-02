@@ -37,7 +37,7 @@ const TeamPage = () => {
   
   const currentMembers = data?.boardMembers?.filter(member => member.fields.pastMember === false) || [];
   const pastMembers = data?.boardMembers?.filter(member => member.fields.pastMember === true) || [];
-
+  
   return(
   <div className="d-flex overflow-hidden bg-black">
     <div className="flex-grow-1 p-2 overflow-auto bg-white">

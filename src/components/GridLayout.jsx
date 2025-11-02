@@ -10,7 +10,11 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "./LanguageSwitcher";
+import OrnamentMarquee from "./OrnamentMarquee";
+import logoBlue from "../assets/design/logo_blue.png";
+import flowerSvg from "../assets/design/flower.svg";
 import "../styles/homepage.css";
+
 
 const GridLayout = () => {
     const { t } = useTranslation();
@@ -98,12 +102,12 @@ const GridLayout = () => {
 
 
   return (
-    <div className="d-flex overflow-hidden bg-black">
+    <div className="d-flex overflow-hidden">
       <div className="flex-grow-1 overflow-auto d-flex">
         <Container className="homepage-container">
-          <Row className="g-1 justify-content-center">
+          <Row className="g-2 justify-content-center">
             <Col xs={12}>
-                <Row className="g-1">
+                <Row className="g-2">
                   {homeTiles && homeTiles.slice(0,4).map((tile, index) => {
                     const tileData = tile.fields || {};
                     const tileImage = tileData.tileImages && Array.isArray(tileData.tileImages) && tileData.tileImages.length > 0 ? tileData.tileImages[0] : null;
@@ -220,15 +224,14 @@ const GridLayout = () => {
 
             {/* Big square 1 */}
             <Col className="g-2" xs={12} md={6}>
-                <div className=" ukr-flag-border bg-white text-black d-flex align-items-center justify-content-center" style={{ aspectRatio: "1/1" }}>
-                    <h1>AKULA 
-                    </h1>
+                <div className="ukr-flag-border bg-white text-black d-flex align-items-center justify-content-center position-relative" style={{ aspectRatio: "1/1" }}>
+                    <OrnamentMarquee />
                 </div>
             </Col>
 
             {/* Big square 2 */}
             <Col xs={12} md={6}>
-              <Row className="g-1">
+              <Row className="g-2">
                 {homeTiles && homeTiles.slice(4, 8).map((tile, index) => {
                   const tileData = tile.fields || {};
                   const tileImage = tileData.tileImages && Array.isArray(tileData.tileImages) && tileData.tileImages.length > 0 ? tileData.tileImages[0] : null;
@@ -343,12 +346,25 @@ const GridLayout = () => {
 
             {/* Big square 3 */}
             <Col xs={12} md={6}>
-              <Row className="g-1">
+              <Row className="g-2">
                 <Col xs={6}>
                 <Link to="/events">
                 <div className="square nav-tile position-relative">
                     <span className="top-left">{t('nav.latestEvents')}</span>
                     <span className="bottom-right">➔</span>
+                    <img 
+                        src={flowerSvg} 
+                        alt="" 
+                        style={{
+                            position: 'absolute',
+                            bottom: '0',
+                            left: '0',
+                            width: '20%',
+                            height: 'auto',
+                            zIndex: 5,
+                            pointerEvents: 'none'
+                        }}
+                    />
                 </div>
                 </Link>
                 </Col>
@@ -387,12 +403,25 @@ const GridLayout = () => {
 
             {/* Big square 4 */}
             <Col xs={12} md={6}>
-              <Row className="g-1">
+              <Row className="g-2">
                 <Col xs={6}>
                   <Link to={'/blog'}>
                     <div className="square nav-tile position-relative">
                         <span className="top-left">{t('nav.blogPosts')}</span>
                         <span className="bottom-right">➔</span>
+                        <img 
+                            src={flowerSvg} 
+                            alt="" 
+                            style={{
+                                position: 'absolute',
+                                bottom: '0',
+                                left: '0',
+                                width: '20%',
+                                height: 'auto',
+                                zIndex: 5,
+                                pointerEvents: 'none'
+                            }}
+                        />
                     </div>
                     </Link>
                 </Col>
@@ -431,7 +460,23 @@ const GridLayout = () => {
 
             {/* About Association */}
             <Col xs={12} md={6}>
-                <div className="about-tile bg-white text-black d-flex flex-column" style={{ aspectRatio: "1/1" }}>
+                <div className="about-tile bg-white text-black d-flex flex-column position-relative" style={{ aspectRatio: "1/1" }}>
+                    <img 
+                        src={logoBlue} 
+                        alt="AKULA Logo" 
+                        className="about-logo"
+                        style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            zIndex: 10,
+                            maxWidth: '50%',
+                            maxHeight: '50%',
+                            objectFit: 'contain',
+                            opacity: 0.4
+                        }}
+                    />
                     <div className="about-title">
                         {t('home.about')}
                     </div>
@@ -446,7 +491,7 @@ const GridLayout = () => {
 
             {/* Team Contact */}
             <Col xs={12} md={6}>
-              <Row className="g-1">
+              <Row className="g-2">
                 
                 
                   {highlights && highlights.slice(0,1).map((blog_post)=>{
@@ -489,6 +534,19 @@ const GridLayout = () => {
                           {t('nav.boardLine3') && <><br/>{t('nav.boardLine3')}</>}
                         </span>
                         <span className="bottom-right">➔</span>
+                        <img 
+                            src={flowerSvg} 
+                            alt="" 
+                            style={{
+                                position: 'absolute',
+                                bottom: '0',
+                                left: '0',
+                                width: '20%',
+                                height: 'auto',
+                                zIndex: 5,
+                                pointerEvents: 'none'
+                            }}
+                        />
                     </div>
                 </Link>
                 </Col>
@@ -549,6 +607,19 @@ const GridLayout = () => {
                                 </a>
                             </div>
                         </div>
+                        <img 
+                            src={flowerSvg} 
+                            alt="" 
+                            style={{
+                                position: 'absolute',
+                                bottom: '0',
+                                left: '0',
+                                width: '20%',
+                                height: 'auto',
+                                zIndex: 5,
+                                pointerEvents: 'none'
+                            }}
+                        />
                     </div>
                 </Col>
               </Row>

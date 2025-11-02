@@ -10,7 +10,7 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(to bottom, #0057b8 0%, #ffd700 50%, #0057b8 100%);
+  background: linear-gradient(to bottom, var(--ukrainian-blue) 0%, var(--ukrainian-yellow-lowercase) 50%, var(--ukrainian-blue) 100%);
 }
 
 .timeline-year-group {
@@ -33,8 +33,8 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #ffd700;
-  border: 4px solid #000;
+  background: var(--ukrainian-yellow-lowercase);
+  border: none;
   z-index: 2;
 }
 
@@ -42,7 +42,7 @@
   font-family: 'Kyiv Type Serif';
   font-size: 2.5rem;
   font-weight: 700;
-  color: #ffd700;
+  color: var(--ukrainian-yellow-lowercase);
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -71,8 +71,8 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #0057b8;
-  border: 3px solid #000;
+  background: var(--ukrainian-blue);
+  border: none;
   position: relative;
   z-index: 2;
   margin-bottom: 0.5rem;
@@ -91,10 +91,10 @@
 }
 
 .event-timeline-entity-title {
-  text-align: left;
+    text-align: left;
   font-size: clamp(1.5rem, 4vw, 3.5rem);
   font-weight: 800;
-  color: #0057b8;
+  color: var(--ukrainian-blue);
   line-height: 90%;
   transition: color 0.25s ease, transform 0.25s ease;
   text-decoration: none;
@@ -119,24 +119,24 @@
     position: fixed;   
 }
 .current-event-image{
-      border:5px solid #ffd700;
+      border:5px solid var(--ukrainian-yellow-lowercase);
 }
 .events-back-arrow{
-    color:#ffd700;
+    color: var(--ukrainian-yellow-lowercase);
     width: 100px;
     max-width: 100px;
     max-height: 120px;
     font-size: 4rem;
   font-weight: 800;
-  border:5px solid #ffd700;
+  border:5px solid var(--ukrainian-yellow-lowercase);
   /* color: #ffd700; */
 }
 
 .events-back-arrow:hover{
     font-size: 4rem;
   font-weight: 800;
-  border:5px solid #ffd700;
-  background-color: #0057b8;
+  border:5px solid var(--ukrainian-yellow-lowercase);
+  background-color: var(--ukrainian-blue);
   transition: 0.3s;
   /* color: #ffd700; */
 }
@@ -190,7 +190,7 @@
     
     height: 100vh;
     overflow: hidden;
-  }
+        }
 
   .mobile-events-timeline {
     height: 100vh;
@@ -204,7 +204,7 @@
   .timeline-line {
     left: 0.75rem;
     width: 2px;
-  }
+        }
 
   .timeline-year-marker {
     padding-left: 0.5rem;
@@ -225,7 +225,7 @@
     padding-left: 0.5rem;
     gap: 1rem;
     margin-bottom: 2rem;
-  }
+        }
 
   .event-timeline-date-marker {
     min-width: 60px;
@@ -235,7 +235,7 @@
     width: 10px;
     height: 10px;
     border-width: 2px;
-  }
+        }
 
   .event-date-label {
     font-size: 0.8rem;
@@ -257,7 +257,7 @@
 .events-list-container {
   height: 100vh;
   overflow-y: auto;
-  padding-right: 1rem;
+    padding-right: 1rem;
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
@@ -282,8 +282,8 @@
   position: sticky;
   top: 10vh;
   height: fit-content;
-  padding: 2rem;
-  text-align: left;
+    padding: 2rem;
+    text-align: left;
   max-height: 80vh;
   overflow-y: auto;
 }
@@ -311,8 +311,8 @@
   height: 70%;
   margin-bottom: 1rem;
   overflow: hidden;
-  border: 3px solid #0057b8;
-  background: #000;
+  border: 3px solid var(--ukrainian-blue);
+  background: var(--black);
   position: relative;
   flex-shrink: 0;
 }
@@ -350,7 +350,7 @@
 .event-current-md-mobile {
   font-size: 1rem;
   font-weight: 600;
-  color: #ffd700;
+  color: var(--ukrainian-yellow-lowercase);
   margin-right: 0.25rem;
 }
 

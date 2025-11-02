@@ -6,8 +6,8 @@
 
 .lang-button {
   background: transparent;
-  border: 2px solid #0057b8;
-  color: #000;
+  border: 2px solid var(--ukrainian-blue);
+  color: var(--dark-grey);
   padding: 0.4rem 0.6rem;
   border-radius: 0;
   cursor: pointer;
@@ -20,15 +20,15 @@
 }
 
 .lang-button:hover {
-  background: #0057b8;
+  background: var(--ukrainian-blue);
   color: #fff;
   transform: translateY(-2px);
 }
 
 .lang-button.active {
-  background: #FFD700;
-  border-color: #FFD700;
-  color: #000;
+  background: var(--ukrainian-yellow);
+  border-color: var(--ukrainian-yellow);
+  color: var(--dark-grey);
 }
 
 .lang-flag {

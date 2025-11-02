@@ -8,8 +8,8 @@
 
 /* AKULA Title Tile */
 .ukr-flag-border {
-  border: 8px solid;
-  border-image: linear-gradient(to bottom, #0057b8 50%, #FFD700 50%) 1;
+  border: 4px solid;
+  border-image: linear-gradient(to bottom, var(--ukrainian-blue) 50%, var(--ukrainian-yellow) 50%) 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -33,7 +33,7 @@
 .nav-tile {
   line-height: 1.4;
   font-size: clamp(1.25rem, 3vw, 2rem);
-  border: 4px solid #000;
+  
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -56,24 +56,24 @@
 }
 
 .nav-tile:hover {
-  color: #ffd700;
-  background-color: #0057b8;
-  border-color: #ffd700;
+  color: var(--ukrainian-yellow-lowercase);
+  background-color: var(--ukrainian-blue);
+  border: 4px solid var(--ukrainian-yellow-lowercase);
   transform: translateY(-2px);
-  box-shadow: 4px 4px 0 #000;
+  box-shadow: 4px 4px 0 var(--dark-grey);
 }
 
 .nav-tile-highlighted {
-  border: 4px solid #ffd700;
-  color: #ffd700;
-  background-color: #0057b8;
+  border: 4px solid var(--ukrainian-yellow-lowercase);
+  color: var(--ukrainian-yellow-lowercase);
+  background-color: var(--ukrainian-blue);
 }
 
 .nav-tile-highlighted:hover {
   background-color: #004494;
-  border-color: #ffd700;
+  border-color: var(--ukrainian-yellow-lowercase);
   transform: translateY(-2px);
-  box-shadow: 4px 4px 0 #000;
+  box-shadow: 4px 4px 0 var(--dark-grey);
 }
 
 /* Square Tile Base */
@@ -98,7 +98,7 @@
 /* Home tile arrow hover effect */
 .home-tile-arrow {
   transition: color 0.3s ease, transform 0.3s ease;
-  color: #000;
+  color: var(--dark-grey);
 }
 
 .home-tile-arrow-link {
@@ -106,7 +106,7 @@
 }
 
 .home-tile-arrow-link:hover .home-tile-arrow {
-  color: #0057b8;
+  color: var(--ukrainian-blue);
   transform: translateY(-4px);
 }
 
@@ -115,7 +115,7 @@
 .home-tile-wrapper:hover .home-tile .home-tile-arrow,
 .home-tile:hover .home-tile-arrow,
 .cardWrapper:hover .home-tile-arrow {
-  color: #0057b8;
+  color: var(--ukrainian-blue);
 }
 
 /* Event/Blog Tiles */
@@ -128,7 +128,7 @@
 
 .event-tile:hover {
   transform: translateY(-4px);
-  box-shadow: 6px 6px 0 #000;
+  box-shadow: 6px 6px 0 var(--dark-grey);
 }
 
 .event-tile-bg {
@@ -167,7 +167,7 @@
 }
 
 .event-tile-desc {
-  color: #000;
+  color: var(--dark-grey);
   font-size: clamp(0.6rem, 1.3vw, 0.75rem);
   line-height: 1.4;
   padding: 1rem;
@@ -219,16 +219,17 @@
 }
 /* About Section */
 .about-tile {
-  border: 4px solid #000;
+  border: none;
   padding: clamp(1rem, 4vw, 2.5rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .about-tile:hover {
-  border-color: #0057b8;
-  box-shadow: 6px 6px 0 #000;
+  border: 4px solid var(--ukrainian-blue);
+  box-shadow: 6px 6px 0 var(--dark-grey);
 }
 
 .about-title {
@@ -264,6 +265,51 @@
   }
 }
 
+/* About Flowers */
+.about-flowers-container {
+  position: absolute;
+  bottom: 20;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 80px;
+  max-height: 25%;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.about-flower {
+  position: absolute;
+  bottom: 0;
+  width: clamp(40px, 4vw, 50px);
+  height: clamp(40px, 4vw, 50px);
+  transform-origin: bottom center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.about-flower-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: bottom center;
+}
+
+@media (min-width: 768px) {
+  .about-flowers-container {
+    bottom: clamp(5px, 1vw, 10px);
+    max-height: 20%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .about-flowers-container {
+    bottom: clamp(10px, 1.5vw, 15px);
+    max-height: 18%;
+  }
+}
+
 /* Showcase Images */
 .showcase-image {
   object-fit: cover;
@@ -278,13 +324,13 @@
 
 /* Home Tile Improvements */
 .home-tile {
-  border: 3px solid #000;
+  /* border: 3px solid var(--dark-grey); */
   transition: border-color 0.3s ease;
   overflow: hidden;
 }
 
 .home-tile:hover {
-  border-color: #0057b8;
+  border-color: var(--ukrainian-blue);
 }
 
 /* Event tiles inside HomeTile should not have double borders */
@@ -295,7 +341,7 @@
 /* HomeTile back content styling */
 .cardFace.back {
   background: #fff;
-  color: #000;
+  color: var(--dark-grey);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -333,7 +379,7 @@
   font-family: 'Kyiv Type Serif';
   font-size: clamp(0.75rem, 2vw, 1rem);
   margin: 0;
-  color: #666;
+  color: var(--text-light-grey);
   font-style: italic;
 }
 
@@ -395,7 +441,7 @@
 }
 
 .contact-link:hover {
-  color: #FFD700;
+  color: var(--ukrainian-yellow);
 }
 
 .social-links {
@@ -406,7 +452,7 @@
 }
 
 .social-link {
-  color: #FFD700;
+  color: var(--ukrainian-yellow);
   transition: transform 0.2s ease, color 0.2s ease;
   display: flex;
   align-items: center;
@@ -439,7 +485,7 @@
   }
 
   .nav-tile {
-    border-width: 3px;
+    /* border-width: 3px; */
   }
 
   .event-tile {
@@ -448,7 +494,7 @@
 
   .event-tile:hover {
     transform: translateY(-2px);
-    box-shadow: 3px 3px 0 #000;
+    box-shadow: 3px 3px 0 var(--dark-grey);
   }
 
   .about-tile {
@@ -471,7 +517,7 @@
 
   .nav-tile {
     font-size: clamp(1rem, 5vw, 1.5rem);
-    border-width: 2px;
+    /* border-width: 2px; */
     padding: 0.75rem;
   }
 
@@ -560,7 +606,7 @@
   }
 
   .home-tile {
-    border-width: 2px;
+    /* border-width: 2px; */
   }
 }
 

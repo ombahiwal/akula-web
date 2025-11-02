@@ -63,21 +63,21 @@ const BlogsPage = () => {
                 </p>
               </Col>
               <Col xs={12} md={4}>
-                <Form.Control
-                  type="text"
+              <Form.Control
+                type="text"
                   placeholder={t('blog.searchPlaceholder')}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                   className="search-bar"
-                />
-              </Col>
-            </Row>
+              />
+            </Col>
+          </Row>
           </div>
 
           {/* Blog Posts Grid */}
           {blogPosts && (
             <>
-              {filteredPosts.length > 0 ? (
+            {filteredPosts.length > 0 ? (
                 <Row className="g-4 mb-5">
                   {filteredPosts.map((post) => (
                     <Col key={post.id} xs={12} md={6} lg={4}>
@@ -96,23 +96,23 @@ const BlogsPage = () => {
                               <span className="blog-card-author">{post.fields.authors}</span>
                               <span className="blog-card-separator">•</span>
                               <span className="blog-card-date">{parseDateTime(post.fields.postDateTime).date}</span>
-                            </div>
+                    </div>
                             <h3 className="blog-card-title">{post.fields.postTitle}</h3>
                             {post.fields.shortDescription && (
                               <p className="blog-card-description">{post.fields.shortDescription}</p>
                             )}
-                          </div>
-                        </div>
+                    </div>
+                  </div>
                       </Link>
-                    </Col>
+                </Col>
                   ))}
                 </Row>
-              ) : (
+            ) : (
                 <div className="blogs-empty-state">
                   <p className="blogs-empty-text">{t('blog.noResults')}</p>
                   <p className="blogs-empty-subtext">{t('blog.noResultsSubtext')}</p>
                 </div>
-              )}
+            )}
             </>
           )}
         </Container>

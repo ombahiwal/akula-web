@@ -125,7 +125,7 @@ const BlogPost = () => {
 
               {/* Blog Body */}
               <div className="blog-body">
-                {documentToReactComponents(blogBody, options)}
+              {documentToReactComponents(blogBody, options)}
               </div>
 
               {/* Footer */}
@@ -133,11 +133,11 @@ const BlogPost = () => {
                 <Link to="/blog" className="back-link-footer">
                   {t('blog.backToBlog')}
                 </Link>
-              </div>
+                  </div>
             </Col>
-          </Row>
-        </Container>
-      </div>
+            </Row>
+      </Container>
+    </div>
     </div>
   );
 };

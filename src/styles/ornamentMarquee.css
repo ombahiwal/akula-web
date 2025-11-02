@@ -1,0 +1,194 @@
+.ornament-marquee-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* AKULA Text Mask */
+.akula-text-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  box-sizing: border-box;
+  overflow: visible;
+  /* background: rgba(255, 255, 255, 1); */
+  mix-blend-mode:normal;
+  
+}
+
+.akula-title {
+  font-family: "Kyiv Type Sans", system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 6vw, 6rem);
+  color: var(--dark-grey-text);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
+  background: rgb(255, 255, 255, 0.9);
+  display: block;
+  margin-top: 5%;
+  box-sizing: border-box;
+  
+}
+
+.akula-subtitle {
+  font-family: "Kyiv Type Sans", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.75rem, 1.5vw, 1.5rem);
+  color: var(--dark-grey);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 100%;
+  padding: 0.5rem 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background: rgba(255, 255, 255, 0.9);
+  display: inline-block;
+}
+
+.ornament-marquee-line {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+  will-change: transform;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  column-gap: 0 !important;
+  font-size: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 0;
+  letter-spacing: 0;
+  word-spacing: 0;
+  border: none;
+  outline: none;
+}
+
+.ornament-svg {
+  display: block;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  line-height: 0;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  float: none;
+}
+
+.flowers-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 80px;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  z-index: 10;
+}
+
+.flower {
+  position: absolute;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  transform-origin: bottom center;
+  pointer-events: none;
+}
+
+.flower-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.flower-stem {
+  stroke: #90EE90;
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: stemGrow 2s ease-out forwards;
+}
+
+.flower-petals {
+  opacity: 0;
+  animation: petalBloom 0.5s ease-out 1.5s forwards;
+}
+
+/* Flower petal colors are set inline in JSX via fill attribute */
+
+.flower-center {
+  /* Colors are set inline in JSX via fill attribute */
+  opacity: 0;
+  animation: centerBloom 0.3s ease-out 1.8s forwards;
+}
+
+@keyframes stemGrow {
+  from {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes petalBloom {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes centerBloom {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

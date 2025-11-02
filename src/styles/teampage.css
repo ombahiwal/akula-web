@@ -13,7 +13,7 @@
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 4px solid;
-  border-image: linear-gradient(to right, #0057b8 50%, #FFD700 50%) 1;
+  border-image: linear-gradient(to right, var(--ukrainian-blue) 50%, var(--ukrainian-yellow) 50%) 1;
 }
 
 .team-title {
@@ -21,15 +21,15 @@
   line-height: 85%;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 800;
-  color: #000;
+  color: var(--dark-grey);
   margin: 0;
 }
 
 /* Team Card */
 .team-card {
-  background-color: #fff;
+  background-color: var(--white);
   border: 6px solid;
-  border-image: linear-gradient(to bottom, #0057b8 50%, #FFD700 50%) 1;
+  border-image: linear-gradient(to bottom, var(--ukrainian-blue) 50%, var(--ukrainian-yellow) 50%) 1;
   transition: all 0.3s ease;
   overflow: hidden;
   display: flex;
@@ -39,9 +39,9 @@
 
 .team-card:hover {
   transform: translateY(-8px);
-  box-shadow: 8px 8px 0 #000;
+  box-shadow: 8px 8px 0 var(--dark-grey);
   border: 6px solid;
-  border-image: linear-gradient(to bottom, #0057b8 50%, #FFD700 50%) 1;
+  border-image: linear-gradient(to bottom, var(--ukrainian-blue) 50%, var(--ukrainian-yellow) 50%) 1;
 }
 
 .team-photo-wrapper {
@@ -49,7 +49,7 @@
   width: 100%;
   overflow: hidden;
   background: #f5f5f5;
-}
+  }
 
 .team-photo {
   width: 100%;
@@ -97,7 +97,7 @@
 
 .team-name-link:hover,
 .team-role-link:hover {
-  color: #0057b8;
+  color: var(--ukrainian-blue);
 }
 
 .team-name {
@@ -105,15 +105,15 @@
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  color: #000;
+  color: var(--dark-grey);
   transition: color 0.2s ease;
 }
 
 .team-name-link:hover .team-name {
-  color: #0057b8;
+  color: var(--ukrainian-blue);
 }
 
-.team-role {
+.team-role {  
   font-family: 'Kyiv Type Serif';
   font-size: clamp(0.9rem, 2vw, 1.05rem);
   color: #666;
@@ -122,7 +122,7 @@
 }
 
 .team-role-link:hover .team-role {
-  color: #0057b8;
+  color: var(--ukrainian-blue);
 }
 
 .team-empty {
@@ -163,7 +163,7 @@
 
   .team-card:hover {
     transform: translateY(-4px);
-    box-shadow: 4px 4px 0 #000;
+    box-shadow: 4px 4px 0 var(--dark-grey);
   }
 }
 

@@ -143,11 +143,11 @@ const EventPost = () => {
                 <Link to="/events" className="back-link-footer">
                   {t('events.backToEvents')}
                 </Link>
-              </div>
+                  </div>
             </Col>
-          </Row>
-        </Container>
-      </div>
+            </Row>
+      </Container>
+    </div>
     </div>
   );
 };

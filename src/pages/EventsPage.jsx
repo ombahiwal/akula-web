@@ -82,21 +82,21 @@ const EventsPage = () => {
 
     // Small delay to ensure DOM is ready
     const timeoutId = setTimeout(() => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+    ScrollTrigger.getAll().forEach((t) => t.kill());
 
       const highlightItemInTrigger = (index) => {
-        itemsRef.current.forEach((item, i) => {
-          if (!item) return;
-          const titleEl = item.querySelector(".event-timeline-entity-title") || item;
-          gsap.to(titleEl, {
-            color: i === index ? "#ffd700" : "#0057b8",
-            scale: i === index ? 1.02 : 1,
-            transformOrigin: "left center",
-            duration: 0.25,
-            overwrite: true,
-          });
+      itemsRef.current.forEach((item, i) => {
+        if (!item) return;
+        const titleEl = item.querySelector(".event-timeline-entity-title") || item;
+        gsap.to(titleEl, {
+          color: i === index ? "#ffd700" : "#0057b8",
+          scale: i === index ? 1.02 : 1,
+          transformOrigin: "left center",
+          duration: 0.25,
+          overwrite: true,
         });
-      };
+      });
+    };
 
       // Determine if mobile or desktop based on container class
       const isMobile = containerRef.current.classList.contains('mobile-events-timeline');
@@ -112,10 +112,10 @@ const EventsPage = () => {
       };
 
       // Create ScrollTriggers
-      const triggers = itemsRef.current.map((el, i) => {
-        if (!el) return null;
-        return ScrollTrigger.create({
-          trigger: el,
+    const triggers = itemsRef.current.map((el, i) => {
+      if (!el) return null;
+      return ScrollTrigger.create({
+        trigger: el,
           scroller: scroller,
           start: isMobile ? "top 70%" : "top center",
           end: isMobile ? "bottom 30%" : "bottom center",
@@ -165,7 +165,7 @@ const EventsPage = () => {
         };
       }
 
-      ScrollTrigger.refresh();
+    ScrollTrigger.refresh();
       updateCurrentEvent(0);
 
       // Return cleanup function
@@ -219,16 +219,16 @@ const EventsPage = () => {
       });
     } else {
       // For desktop
-      const top = el.offsetTop - window.innerHeight / 2;
+    const top = el.offsetTop - window.innerHeight / 2;
 
-      gsap.to(containerRef.current, {
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTo: { y: top, autoKill: true },
-        onComplete: () => {
+    gsap.to(containerRef.current, {
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTo: { y: top, autoKill: true },
+      onComplete: () => {
           setCurrentYear(events[index].year);
-          setCurrentMD(events[index].dt.md);
-          setCurrentImage(events[index].image);
+        setCurrentMD(events[index].dt.md);
+        setCurrentImage(events[index].image);
           highlightItem(index);
         },
       });
@@ -236,14 +236,14 @@ const EventsPage = () => {
   };
 
   const highlightItem = (index) => {
-    itemsRef.current.forEach((item, i) => {
+        itemsRef.current.forEach((item, i) => {
       if (!item) return;
-      const titleEl = item.querySelector(".event-timeline-entity-title");
+          const titleEl = item.querySelector(".event-timeline-entity-title");
       if (titleEl) {
-        gsap.to(titleEl, {
+          gsap.to(titleEl, {
           color: i === index ? "#ffd700" : "#0057b8",
-          scale: i === index ? 1.02 : 1,
-          duration: 0.25,
+            scale: i === index ? 1.02 : 1,
+            duration: 0.25,
         });
       }
     });
@@ -336,7 +336,7 @@ const EventsPage = () => {
           <Col xs={12} lg={8}>
             <div className="timeline-wrapper">
               <div className="timeline-line"></div>
-              <div style={{ height: "50vh" }} />
+            <div style={{ height: "50vh" }} />
               {years.map((year, yearIdx) => (
                 <div key={year} className="timeline-year-group">
                   {/* Year Marker */}
@@ -349,7 +349,7 @@ const EventsPage = () => {
                   {eventsByYear[year].map((event, eventIdx) => {
                     const globalIdx = events.findIndex(e => e.id === event.id);
                     return (
-                      <div
+              <div
                         key={event.id}
                         ref={(el) => setItemRef(el, globalIdx)}
                         className="event-timeline-entity"
@@ -359,17 +359,17 @@ const EventsPage = () => {
                           <div className="event-date-dot"></div>
                           <div className="event-date-label">{event.dt.md}</div>
                         </div>
-                        <div className="event-content">
+                <div className="event-content">
                           <Link to={"/events/"+event.id}>
                             <div className="event-timeline-entity-title">{event.title}</div>
                           </Link>
-                        </div>
+                </div>
                       </div>
                     );
                   })}
-                </div>
-              ))}
-              <div style={{ height: "50vh" }} />
+              </div>
+            ))}
+            <div style={{ height: "50vh" }} />
             </div>
           </Col>
         </Row>

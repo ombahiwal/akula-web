@@ -19,7 +19,8 @@
     "searchPlaceholder": "Rechercher des articles...",
     "noResults": "Aucun article trouvé",
     "noResultsSubtext": "Essayez d'ajuster vos termes de recherche",
-    "backToBlog": "← Retour au blog"
+    "backToBlog": "← Retour au blog",
+    "backToHome": "← Accueil"
   },
   "events": {
     "title": "Événements AKULA",

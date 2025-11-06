@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useEffect, useState} from "react";
 import { getContent } from "../api/cfclient";
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const TeamCard = ({ member }) => (
   <div className="team-card">
@@ -42,6 +43,12 @@ const TeamPage = () => {
   <div className="d-flex overflow-hidden bg-black">
     <div className="flex-grow-1 p-2 overflow-auto bg-white">
       <Container>
+        {/* Navigation to Home */}
+        <div className="team-navigation">
+          <Link to="/" className="team-home-link">
+            {t('blog.backToHome')}
+          </Link>
+        </div>
         <Row className="g-2 justify-content-center">
           <Col>
             {/* --- CURRENT TEAM --- */}

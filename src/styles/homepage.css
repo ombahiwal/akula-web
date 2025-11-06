@@ -239,6 +239,17 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.about-title .about-logo {
+  max-width: clamp(120px, 25vw, 200px);
+  max-height: clamp(60px, 12vw, 100px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .about-body {

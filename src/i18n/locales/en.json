@@ -19,7 +19,8 @@
     "searchPlaceholder": "Search blog posts...",
     "noResults": "No posts found",
     "noResultsSubtext": "Try adjusting your search terms",
-    "backToBlog": "← Back to Blog"
+    "backToBlog": "← Back to Blog",
+    "backToHome": "← Home"
   },
   "events": {
     "title": "AKULA Events",

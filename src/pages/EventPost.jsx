@@ -46,18 +46,118 @@ const EventPost = () => {
       [BLOCKS.UL_LIST]: (node, children) => <ul>{children}</ul>,
       [BLOCKS.OL_LIST]: (node, children) => <ol>{children}</ol>,
       [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
-      [BLOCKS.EMBEDDED_ASSET]: (node) => (
-        <Image
-          src={node.data.target}
-          fluid
-          className="my-3 rounded shadow-sm"
-        />
+      [BLOCKS.QUOTE]: (node, children) => (
+        <blockquote className="event-blockquote">
+          {children}
+        </blockquote>
       ),
+      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+        const asset = node.data.target;
+        let imageUrl = null;
+        let altText = '';
+        
+        // Handle asset object structure
+        if (asset?.fields?.file?.url) {
+          imageUrl = `https:${asset.fields.file.url}`;
+          altText = asset.fields.title || asset.fields.description || '';
+        } 
+        // Fallback: handle if target is already a URL string
+        else if (typeof asset === 'string') {
+          imageUrl = asset;
+        }
+        
+        if (imageUrl) {
+          return (
+            <Image
+              src={imageUrl}
+              alt={altText}
+              fluid
+              className="my-3 rounded shadow-sm"
+            />
+          );
+        }
+        return null;
+      },
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const entry = node.data.target;
+        if (!entry) return null;
+        
+        const contentType = entry.sys?.contentType?.sys?.id;
+        const fields = entry.fields || {};
+        
+        // Handle different embedded entry types
+        if (contentType === 'blogPost' || contentType === 'blogPosts') {
+          return (
+            <div className="event-embedded-entry event-embedded-blog">
+              {fields.postTitle && (
+                <h4 className="event-embedded-title">
+                  <Link to={`/blog/${entry.sys.id}`}>
+                    {fields.postTitle}
+                  </Link>
+                </h4>
+              )}
+              {fields.shortDescription && (
+                <p className="event-embedded-description">{fields.shortDescription}</p>
+              )}
+            </div>
+          );
+        }
+        
+        if (contentType === 'event' || contentType === 'eventsTimeline') {
+          return (
+            <div className="event-embedded-entry event-embedded-event">
+              {fields.eventTitle && (
+                <h4 className="event-embedded-title">
+                  <Link to={`/events/${entry.sys.id}`}>
+                    {fields.eventTitle}
+                  </Link>
+                </h4>
+              )}
+              {fields.eventDescEn && (
+                <p className="event-embedded-description">{fields.eventDescEn}</p>
+              )}
+            </div>
+          );
+        }
+        
+        // Generic fallback for other entry types
+        return (
+          <div className="event-embedded-entry">
+            <p className="event-embedded-fallback">
+              [Embedded content: {contentType || 'unknown'}]</p>
+          </div>
+        );
+      },
       [INLINES.HYPERLINK]: (node, children) => (
         <a href={node.data.uri} target="_blank" rel="noopener noreferrer">
           {children}
         </a>
       ),
+      [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+        const entry = node.data.target;
+        if (!entry) return <span>{children}</span>;
+        
+        const contentType = entry.sys?.contentType?.sys?.id;
+        const entryId = entry.sys?.id;
+        
+        if (contentType === 'blogPost' || contentType === 'blogPosts') {
+          return (
+            <Link to={`/blog/${entryId}`} className="event-entry-link">
+              {children}
+            </Link>
+          );
+        }
+        
+        if (contentType === 'event' || contentType === 'eventsTimeline') {
+          return (
+            <Link to={`/events/${entryId}`} className="event-entry-link">
+              {children}
+            </Link>
+          );
+        }
+        
+        return <span>{children}</span>;
+      },
     },
   };
 

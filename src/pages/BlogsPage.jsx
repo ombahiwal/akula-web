@@ -53,6 +53,12 @@ const BlogsPage = () => {
     <div className="d-flex overflow-hidden bg-black min-vh-100">
       <div className="bg-white flex-grow-1 overflow-auto">
         <Container fluid className="px-md-5">
+          {/* Navigation to Home */}
+          <div className="blogs-navigation">
+            <Link to="/" className="blogs-home-link">
+              {t('blog.backToHome')}
+            </Link>
+          </div>
           {/* Header Section */}
           <div className="blogs-header">
             <Row className="align-items-center">

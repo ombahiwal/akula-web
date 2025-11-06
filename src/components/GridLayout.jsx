@@ -170,8 +170,8 @@ const GridLayout = () => {
                       return (
                         <Col xs={6} md={3} className={isFirst ? "tile-col" : ""}>
                           <div ref={tileRef} className="home-tile-wrapper" style={{ width: '100%' }}>
-                            <HomeTile
-                              frontContent={
+                         <HomeTile
+                        frontContent={
                                 tileImage ? (
                                   <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                                     <Image className="showcase-image" src={tileImage} fluid/>
@@ -181,8 +181,8 @@ const GridLayout = () => {
                                     <span>No Image</span>
                                   </div>
                                 )
-                              }
-                              backContent={
+                        }
+                        backContent={
                                 <div style={{ textAlign: "center", position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1rem' }}>
                                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', overflow: 'hidden' }}>
                                     <h2 ref={titleRef} className="home-tile-title">{tileData.tileTitle || ""}</h2>
@@ -197,8 +197,8 @@ const GridLayout = () => {
                                       <span className="home-tile-arrow" style={{ fontSize: '1.5rem', display: 'inline-block' }}>➔</span>
                                     </Link>
                                   </div>
-                                </div>
-                              }
+                          </div>
+                        }
                               direction={direction}
                             />
                           </div>
@@ -291,10 +291,10 @@ const GridLayout = () => {
                     }, []);
                     
                     return (
-                      <Col xs={6}>
+                <Col xs={6}>
                         <div ref={tileRef} className="home-tile-wrapper" style={{ width: '100%' }}>
-                          <HomeTile
-                            frontContent={
+                  <HomeTile
+                        frontContent={
                               tileImage ? (
                                 <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                                   <Image className="showcase-image" src={tileImage} fluid/>
@@ -304,8 +304,8 @@ const GridLayout = () => {
                                   <span>No Image</span>
                                 </div>
                               )
-                            }
-                            backContent={
+                        }
+                        backContent={
                               <div style={{ textAlign: "center", position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1rem' }}>
                                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', overflow: 'hidden' }}>
                                   <h2 ref={titleRef} className="home-tile-title">{tileData.tileTitle || ""}</h2>
@@ -320,12 +320,12 @@ const GridLayout = () => {
                                     <span className="home-tile-arrow" style={{ fontSize: '1.5rem', display: 'inline-block' }}>➔</span>
                                   </Link>
                                 </div>
-                              </div>
-                            }
+                          </div>
+                        }
                             direction={direction}
-                          />
+                      />
                         </div>
-                      </Col>
+                </Col>
                     );
                   };
                   
@@ -461,28 +461,16 @@ const GridLayout = () => {
             {/* About Association */}
             <Col xs={12} md={6}>
                 <div className="about-tile bg-white text-black d-flex flex-column position-relative" style={{ aspectRatio: "1/1" }}>
-                    <img 
-                        src={logoBlue} 
-                        alt="AKULA Logo" 
-                        className="about-logo"
-                        style={{
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            zIndex: 10,
-                            maxWidth: '50%',
-                            maxHeight: '50%',
-                            objectFit: 'contain',
-                            opacity: 0.4
-                        }}
-                    />
-                    <div className="about-title">
-                        {t('home.about')}
-                    </div>
+                        <div className="about-title">
+                        <img 
+                            src={logoBlue} 
+                            alt="AKULA Logo" 
+                            className="about-logo"
+                        />
+                        </div>
                     <div className="about-body kyivserif">
                         {t('home.aboutText')}
-                    </div>
+                        </div>
                     <div className="about-language-switcher">
                         <LanguageSwitcher />
                     </div>

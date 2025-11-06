@@ -19,7 +19,8 @@
     "searchPlaceholder": "Пошук статей...",
     "noResults": "Статей не знайдено",
     "noResultsSubtext": "Спробуйте змінити пошукові терміни",
-    "backToBlog": "← Назад до блогу"
+    "backToBlog": "← Назад до блогу",
+    "backToHome": "← Головна"
   },
   "events": {
     "title": "Події АКУЛА",

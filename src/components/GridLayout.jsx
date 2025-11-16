@@ -142,7 +142,7 @@ const GridLayout = () => {
                             // Calculate font size as 10% of tile width, with min/max constraints
                             // Min: 12px, Max: 24px, or 10% of tile width
                             const baseSize = tileWidth * 0.1;
-                            const fontSize = Math.max(8, Math.min(20, baseSize));
+                            const fontSize = Math.max(8, Math.min(15, baseSize));
                             titleRef.current.style.fontSize = `${fontSize}px`;
                           }
                         };
@@ -264,7 +264,7 @@ const GridLayout = () => {
                           // Measure the actual tile width (accounting for borders/padding)
                           const tileWidth = tileRef.current.offsetWidth;
                           // Calculate font size as 10% of tile width, with min/max constraints
-                          const baseSize = tileWidth * 0.1;
+                          const baseSize = tileWidth * 0.07;
                           const fontSize = Math.max(12, Math.min(24, baseSize));
                           titleRef.current.style.fontSize = `${fontSize}px`;
                         }
@@ -310,7 +310,7 @@ const GridLayout = () => {
                                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', overflow: 'hidden' }}>
                                   <h2 ref={titleRef} className="home-tile-title">{tileData.tileTitle || ""}</h2>
                                   {richTextContent && (
-                                    <div className="text-back-small" style={{ overflow: 'hidden' }}>
+                                    <div className="text-back-small" style={{ overflow: 'hidden', fontSize: '0.9rem' }}>
                                       {richTextContent}
                                     </div>
                                   )}

@@ -196,6 +196,7 @@ const BlogPost = () => {
     <div className="d-flex overflow-hidden bg-black">
       <div className="flex-grow-1 overflow-auto bg-white">
         {/* Back Button */}
+        <title>Hello</title>
         <Container className="pt-4 pb-2">
           <Link to="/blog" className="back-link">
             {t('blog.backToBlog')}

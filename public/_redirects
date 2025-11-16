@@ -1,2 +1,3 @@
-# SPA fallback removed to allow Edge Functions to handle /blog/* and /events/*
-# Netlify automatically serves index.html for unmatched routes in SPAs
+# Edge Functions handle these paths first, then fall back to SPA
+# Note: Edge Functions run BEFORE redirects, so they take precedence
+/*    /index.html   200

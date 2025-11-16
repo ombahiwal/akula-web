@@ -1,0 +1,14 @@
+[build]
+  command = "yarn build"
+  publish = "dist"
+
+[[edge_functions]]
+  path = "/blog/*"
+  function = "blog-og"
+
+# Required environment variables (set in Netlify UI: Site settings → Environment variables):
+# CONTENTFUL_SPACE_ID - your Contentful space ID (same as VITE_SPACE_ID)
+# CONTENTFUL_DELIVERY_TOKEN - your Contentful delivery API token (same as VITE_ACCESS_TOKEN)
+# CONTENTFUL_ENVIRONMENT_ID - optional, defaults to "master"
+# PUBLIC_SITE_URL - your production domain, e.g. https://akula-dev.netlify.app
+# OG_FALLBACK_IMAGE - optional, defaults to {PUBLIC_SITE_URL}/og-default.jpg

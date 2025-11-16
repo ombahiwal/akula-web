@@ -6,6 +6,10 @@
   path = "/blog/*"
   function = "blog-og"
 
+[[edge_functions]]
+  path = "/events/*"
+  function = "event-og"
+
 # Required environment variables (set in Netlify UI: Site settings → Environment variables):
 # CONTENTFUL_SPACE_ID - your Contentful space ID (same as VITE_SPACE_ID)
 # CONTENTFUL_DELIVERY_TOKEN - your Contentful delivery API token (same as VITE_ACCESS_TOKEN)

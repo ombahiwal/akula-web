@@ -60,13 +60,13 @@ const handler = async (request: Request, context: any) => {
   ];
 
   // First try by sys.id
-  endpoints[0].searchParams.set("content_type", "blogPost");
+  endpoints[0].searchParams.set("content_type", "blogPosts");
   endpoints[0].searchParams.set("sys.id[in]", identifier);
   endpoints[0].searchParams.set("limit", "1");
   endpoints[0].searchParams.set("include", "2");
 
   // Then try slug field
-  endpoints[1].searchParams.set("content_type", "blogPost");
+  endpoints[1].searchParams.set("content_type", "blogPosts");
   endpoints[1].searchParams.set("fields.slug", identifier);
   endpoints[1].searchParams.set("limit", "1");
   endpoints[1].searchParams.set("include", "2");

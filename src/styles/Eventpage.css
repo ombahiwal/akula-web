@@ -1,3 +1,21 @@
+/* Navigation */
+.events-navigation {
+  padding: 1rem 1.5rem;
+}
+
+.events-home-link {
+  color: var(--ukrainian-blue);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.events-home-link:hover {
+  opacity: 0.7;
+  color: var(--ukrainian-blue);
+}
+
 /* Timeline Structure */
 .timeline-wrapper {
   position: relative;

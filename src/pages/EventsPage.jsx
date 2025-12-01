@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Eventpage.css";
 import ImageCarousel from "../components/ImageCarousel";
 import {Link} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function parseDateTime(isoString) {
@@ -26,6 +27,7 @@ function parseDateTime(isoString) {
 }
 
 const EventsPage = () => {
+  const { t } = useTranslation();
   const [events, setEvents] = useState([]); // fetched events
   const [currentYear, setCurrentYear] = useState("");
   const [currentImage, setCurrentImage] = useState("");
@@ -271,6 +273,12 @@ const EventsPage = () => {
 
   return (
     <div className="events-page bg-black text-white">
+      {/* Navigation to Home */}
+      <div className="events-navigation" style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 1000 }}>
+        <Link to="/" className="events-home-link" style={{ color: '#0057b8', textDecoration: 'none', fontSize: '1rem', fontWeight: '500' }}>
+          {t('blog.backToHome')}
+        </Link>
+      </div>
       {/* Mobile Layout - Timeline only */}
       <div className="d-lg-none mobile-events-layout">
         {/* Scrollable Timeline Section */}
